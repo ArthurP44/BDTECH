@@ -9,8 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
+                <th>Name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,8 +17,7 @@
         {% for author in authors %}
             <tr>
                 <td>{{ author.id }}</td>
-                <td>{{ author.firstname }}</td>
-                <td>{{ author.lastname }}</td>
+                <td>{{ author.name }}</td>
                 <td>
                     <a href="{{ path('author_show', {'id': author.id}) }}">show</a>
                     <a href="{{ path('author_edit', {'id': author.id}) }}">edit</a>
@@ -27,7 +25,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

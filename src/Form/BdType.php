@@ -24,9 +24,9 @@ class BdType extends AbstractType
             ->add('on_lend')
             ->add('filename')
             ->add('created_at')
-            ->add('author')
             ->add('category', null, ['choice_label' => 'name'])
             ->add('collection', null, ['choice_label' => 'name'])
+            ->add('author', null, ['choice_label' => 'name'])
         ;
     }
 

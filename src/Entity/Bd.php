@@ -79,11 +79,6 @@ class Bd
     private $created_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="bds")
-     */
-    private $author;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="bds")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -94,10 +89,16 @@ class Bd
      */
     private $collection;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="bds")
+     */
+    private $authors;
+
     public function __construct()
     {
-        $this->author = new ArrayCollection();
+        $this->authors = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -248,24 +249,6 @@ class Bd
         return $this;
     }
 
-    public function addAuthor(Author $author): self
-    {
-        if (!$this->author->contains($author)) {
-            $this->author[] = $author;
-        }
-
-        return $this;
-    }
-
-    public function removeAuthor(Author $author): self
-    {
-        if ($this->author->contains($author)) {
-            $this->author->removeElement($author);
-        }
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -286,6 +269,32 @@ class Bd
     public function setCollection(?BdCollection $collection): self
     {
         $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Author[]
+     */
+    public function getAuthors(): Collection
+    {
+        return $this->authors;
+    }
+
+    public function addAuthor(Author $author): self
+    {
+        if (!$this->authors->contains($author)) {
+            $this->authors[] = $author;
+        }
+
+        return $this;
+    }
+
+    public function removeAuthor(Author $author): self
+    {
+        if ($this->authors->contains($author)) {
+            $this->authors->removeElement($author);
+        }
 
         return $this;
     }
