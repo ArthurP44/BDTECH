@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit BdCollection{% endblock %}
+
+{% block body %}
+    <h1>Edit BdCollection</h1>
+
+    {{ include('bd_collection/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('bd_collection_index') }}">back to list</a>
+
+    {{ include('bd_collection/_delete_form.html.twig') }}
+{% endblock %}

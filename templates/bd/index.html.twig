@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bd index{% endblock %}
+
+{% block body %}
+    <h1>Bd index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Edition</th>
+                <th>Collected_works</th>
+                <th>Creation_date</th>
+                <th>Owned_bd_date</th>
+                <th>Value</th>
+                <th>Price</th>
+                <th>Comment</th>
+                <th>Isbn</th>
+                <th>On_lend</th>
+                <th>Filename</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bd in bds %}
+            <tr>
+                <td>{{ bd.id }}</td>
+                <td>{{ bd.title }}</td>
+                <td>{{ bd.edition }}</td>
+                <td>{{ bd.collectedWorks }}</td>
+                <td>{{ bd.creationDate ? bd.creationDate|date('Y-m-d') : '' }}</td>
+                <td>{{ bd.ownedBdDate ? bd.ownedBdDate|date('Y-m-d') : '' }}</td>
+                <td>{{ bd.value }}</td>
+                <td>{{ bd.price }}</td>
+                <td>{{ bd.comment }}</td>
+                <td>{{ bd.isbn }}</td>
+                <td>{{ bd.onLend ? 'Yes' : 'No' }}</td>
+                <td>{{ bd.filename }}</td>
+                <td>{{ bd.createdAt ? bd.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('bd_show', {'id': bd.id}) }}">show</a>
+                    <a href="{{ path('bd_edit', {'id': bd.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('bd_new') }}">Create new</a>
+{% endblock %}

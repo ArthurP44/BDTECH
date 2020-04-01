@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BdCollection index{% endblock %}
+
+{% block body %}
+    <h1>BdCollection index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bd_collection in bd_collections %}
+            <tr>
+                <td>{{ bd_collection.id }}</td>
+                <td>{{ bd_collection.name }}</td>
+                <td>
+                    <a href="{{ path('bd_collection_show', {'id': bd_collection.id}) }}">show</a>
+                    <a href="{{ path('bd_collection_edit', {'id': bd_collection.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('bd_collection_new') }}">Create new</a>
+{% endblock %}
