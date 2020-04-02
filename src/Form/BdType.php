@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Author;
 use App\Entity\Bd;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,7 +28,10 @@ class BdType extends AbstractType
             ->add('created_at')
             ->add('category', null, ['choice_label' => 'name'])
             ->add('collection', null, ['choice_label' => 'name'])
-            ->add('author', null, ['choice_label' => 'name'])
+            ->add('authors', EntityType::class, [
+                'class' =>Author::class,
+                'choice_label' => 'name'
+            ])
         ;
     }
 
