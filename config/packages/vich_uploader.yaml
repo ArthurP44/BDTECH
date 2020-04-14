@@ -1,0 +1,7 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        covers:
+            uri_prefix: /images/covers
+            upload_destination: '%upload_cover_directory'

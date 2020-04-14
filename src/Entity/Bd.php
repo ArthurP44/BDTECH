@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BdRepository")
+ * @Vich\Uploadable
  */
 class Bd
 {
@@ -74,9 +78,21 @@ class Bd
     private $filename;
 
     /**
+     * @Vich\UploadableField(mapping="covers", fileNameProperty="filename")
+     * @var File
+     */
+    private $coverFile;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var DateTime
+     */
+    private $updatedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="bds")
@@ -297,5 +313,37 @@ class Bd
         }
 
         return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getCoverFile(): ?File
+    {
+        return $this->coverFile;
+    }
+
+    public function setCoverFile(File $coverFile): void
+    {
+        $this->coverFile = $coverFile;
+        if ($coverFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime $updatedAt
+     */
+    public function setUpdatedAt(DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
