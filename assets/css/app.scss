@@ -3,3 +3,12 @@
 body {
     background-color: lightgray;
 }
+
+a {
+    text-decoration: none;
+}
+
+//font-size for bd-index's table to avoid weird margin
+.table {
+    font-size: 0.9em;
+}
