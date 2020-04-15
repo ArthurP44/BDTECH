@@ -8,6 +8,12 @@ a {
     text-decoration: none;
 }
 
+//set carousel slide size
+.carousel {
+    width:380px;
+    height:500px;
+}
+
 //font-size for bd-index's table to avoid weird margin
 .table {
     font-size: 0.9em;

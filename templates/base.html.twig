@@ -5,12 +5,13 @@
     <title>
         {% block title %}{% endblock %}
     </title>
+    {% block head %}
+        {% block navbar %}
+        {% endblock %}
 
-    {% block navbar %}
-    {% endblock %}
-
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     {% endblock %}
 </head>
 <body>
@@ -23,6 +24,7 @@
 
 <footer>
     {% block footer %}
+        {# add footer copyright + href my linkedin + my github #}
     {% endblock %}
 </footer>
 </html>
