@@ -4,8 +4,9 @@
 
 {% block body %}
     <h1>Ajouter une BD</h1>
+    <div class="container">
+        {{ include('bd/_form.html.twig') }}
 
-    {{ include('bd/_form.html.twig') }}
-
-    <a href="{{ path('bd_index') }}">back to list</a>
+        <a href="{{ path('bd_index') }}">back to list</a>
+    </div>
 {% endblock %}

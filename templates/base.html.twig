@@ -24,7 +24,15 @@
 
 <footer>
     {% block footer %}
-        {# add footer copyright + href my linkedin + my github #}
+        <div class="navbar navbar-expand-lg navbar-light bg-dark d-flex justify-content-around">
+            <a href="https://github.com/ArthurP44" target="_blank"><img src="/build/logo_github.png"
+                                                                        style="height:80px; width:80px;"
+                                                                        alt="logo_github"></a>
+            <h6 class="text-white">Copyright {{ 'now'|date("Y") }}, Arthur Pralon - All rights reserved</h6>
+            <a href="https://www.linkedin.com/in/arthur-pralon/" target="_blank"><img src="/build/logo_linkedin.png"
+                                                                        style="height:55px; width:60px;"
+                                                                        alt="logo_linkedin"></a>
+        </div>
     {% endblock %}
 </footer>
 </html>
