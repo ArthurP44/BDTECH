@@ -4,4 +4,4 @@ vich_uploader:
     mappings:
         covers:
             uri_prefix: /images/covers
-            upload_destination: '%upload_cover_directory'
+            upload_destination: '%upload_directory%'

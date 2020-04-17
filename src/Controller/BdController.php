@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Bd;
 use App\Form\BdType;
 use App\Repository\BdRepository;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,14 +30,19 @@ class BdController extends AbstractController
     /**
      * @Route("/new", name="bd_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $bd = new Bd();
+        $currentTime = new DateTime('now');
+
         $form = $this->createForm(BdType::class, $bd);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $bd->setSlug($slugify->generate($bd->getTitle()));
+            $bd->setCreatedAt($currentTime);
+            $bd->setUpdatedAt($currentTime);
             $entityManager->persist($bd);
             $entityManager->flush();
 
@@ -49,7 +56,7 @@ class BdController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="bd_show", methods={"GET"})
+     * @Route("/{slug}", name="bd_show", methods={"GET"})
      */
     public function show(Bd $bd): Response
     {
@@ -59,14 +66,15 @@ class BdController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="bd_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="bd_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Bd $bd): Response
+    public function edit(Request $request, Bd $bd, Slugify $slugify): Response
     {
         $form = $this->createForm(BdType::class, $bd);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $bd->setSlug($slugify->generate($bd->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('bd_index');
@@ -79,7 +87,7 @@ class BdController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="bd_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="bd_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Bd $bd): Response
     {

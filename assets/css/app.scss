@@ -2,10 +2,15 @@
 
 body {
     background-color: lightgray;
+    background-image: url("../images/gaston_bg.jpg");
 }
 
 a {
     text-decoration: none;
+}
+
+.jumbotron{
+    background-color: whitesmoke;
 }
 
 //set carousel slide size

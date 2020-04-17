@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\BdCollection;
 use App\Form\BdCollectionType;
 use App\Repository\BdCollectionRepository;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ class BdCollectionController extends AbstractController
     /**
      * @Route("/new", name="bd_collection_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $bdCollection = new BdCollection();
         $form = $this->createForm(BdCollectionType::class, $bdCollection);
@@ -36,6 +37,7 @@ class BdCollectionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $bdCollection->setSlug($slugify->generate($bdCollection->getName()));
             $entityManager->persist($bdCollection);
             $entityManager->flush();
 
@@ -49,7 +51,7 @@ class BdCollectionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="bd_collection_show", methods={"GET"})
+     * @Route("/{slug}", name="bd_collection_show", methods={"GET"})
      */
     public function show(BdCollection $bdCollection): Response
     {
@@ -59,14 +61,15 @@ class BdCollectionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="bd_collection_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="bd_collection_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, BdCollection $bdCollection): Response
+    public function edit(Request $request, BdCollection $bdCollection, Slugify $slugify): Response
     {
         $form = $this->createForm(BdCollectionType::class, $bdCollection);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $bdCollection->setSlug($slugify->generate($bdCollection->getName()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('bd_collection_index');
@@ -79,7 +82,7 @@ class BdCollectionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="bd_collection_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="bd_collection_delete", methods={"DELETE"})
      */
     public function delete(Request $request, BdCollection $bdCollection): Response
     {

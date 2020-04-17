@@ -22,15 +22,21 @@ class BdType extends AbstractType
         $builder
             ->add('category', null, [
                 'label' => 'Genre :',
+                'placeholder' => 'Choisissez un Genre',
                 'choice_label' => 'name'
             ])
             ->add('collection', null, [
                 'label' => 'Série :',
+                'placeholder' => 'Choisissez une Série',
                 'choice_label' => 'name'
             ])
             ->add('authors', EntityType::class, [
                 'label' => 'Auteur(s) :',
+                'placeholder' => 'Choisissez un Auteur',
                 'class' => Author::class,
+                'expanded' => true,
+                'multiple' => true,
+                'by_reference' => false,
                 'choice_label' => 'name'
             ])
             ->add('title', TextType::class, ['label' => 'Titre :'])
@@ -85,10 +91,6 @@ class BdType extends AbstractType
                 'required' => false,
                 'allow_delete' => false,
                 'download_uri' => false,
-            ])
-            ->add('filename', TextType::class, [
-                'label' => 'nom de l\'image :',
-                'required' => false
             ]);
     }
 

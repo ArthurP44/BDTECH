@@ -64,7 +64,7 @@
 
     <a href="{{ path('bd_index') }}">back to list</a>
 
-    <a href="{{ path('bd_edit', {'id': bd.id}) }}">edit</a>
+    <a href="{{ path('bd_edit', {'slug': bd.slug}) }}">edit</a>
 
     {{ include('bd/_delete_form.html.twig') }}
 {% endblock %}

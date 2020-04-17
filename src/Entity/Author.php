@@ -28,6 +28,11 @@ class Author
      */
     private $bds;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->bds = new ArrayCollection();
@@ -74,6 +79,18 @@ class Author
             $this->bds->removeElement($bd);
             $bd->removeAuthor($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

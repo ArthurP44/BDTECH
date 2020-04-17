@@ -19,8 +19,8 @@
                 <td>{{ bd_collection.id }}</td>
                 <td>{{ bd_collection.name }}</td>
                 <td>
-                    <a href="{{ path('bd_collection_show', {'id': bd_collection.id}) }}">show</a>
-                    <a href="{{ path('bd_collection_edit', {'id': bd_collection.id}) }}">edit</a>
+                    <a href="{{ path('bd_collection_show', {'slug': bd_collection.slug}) }}">show</a>
+                    <a href="{{ path('bd_collection_edit', {'slug': bd_collection.slug}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

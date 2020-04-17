@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Author;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,14 @@ class AuthorController extends AbstractController
     /**
      * @Route("/new", name="author_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $author = new Author();
         $form = $this->createForm(AuthorType::class, $author);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $author->setSlug($slugify->generate($author->getName()));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($author);
             $entityManager->flush();
@@ -49,7 +51,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="author_show", methods={"GET"})
+     * @Route("/{slug}", name="author_show", methods={"GET"})
      */
     public function show(Author $author): Response
     {
@@ -59,14 +61,15 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="author_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="author_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Author $author): Response
+    public function edit(Request $request, Author $author, Slugify $slugify): Response
     {
         $form = $this->createForm(AuthorType::class, $author);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $author->setSlug($slugify->generate($author->getName()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('author_index');
@@ -79,7 +82,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="author_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="author_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Author $author): Response
     {

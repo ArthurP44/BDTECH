@@ -19,32 +19,26 @@ class BdRepository extends ServiceEntityRepository
         parent::__construct($registry, Bd::class);
     }
 
-    // /**
-    //  * @return Bd[] Returns an array of Bd objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getLastBd()
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $this->createQueryBuilder('bd')
+            ->select('bd.filename', 'bd.created_at', 'bd.slug')
+            ->setMaxResults(5)
+            ->orderBy('bd.created_at', 'DESC');
+        return $query->getQuery()->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Bd
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    public function countBd() {
+        $query = $this->createQueryBuilder('bd')
+            ->select('bd');
+        return $query->getQuery()->getResult();
     }
-    */
+
+    public function countBdLend() {
+        $query = $this->createQueryBuilder('bd')
+            ->select('bd')
+            ->where('bd.on_lend = true');
+        return $query->getQuery()->getResult();
+    }
+
 }

@@ -84,7 +84,7 @@ class Bd
     private $coverFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
     private $created_at;
 
@@ -109,6 +109,11 @@ class Bd
      * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="bds")
      */
     private $authors;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -345,5 +350,17 @@ class Bd
     public function setUpdatedAt(DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

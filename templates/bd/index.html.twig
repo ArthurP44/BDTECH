@@ -41,8 +41,8 @@
                 <td>{{ bd.filename }}</td>
                 <td>{{ bd.createdAt ? bd.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('bd_show', {'id': bd.id}) }}">show</a>
-                    <a href="{{ path('bd_edit', {'id': bd.id}) }}">edit</a>
+                    <a href="{{ path('bd_show', {'slug': bd.slug}) }}">show</a>
+                    <a href="{{ path('bd_edit', {'slug': bd.slug}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
