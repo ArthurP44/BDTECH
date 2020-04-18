@@ -19,6 +19,7 @@ class BdRepository extends ServiceEntityRepository
         parent::__construct($registry, Bd::class);
     }
 
+    // 5 last BD in db :
     public function getLastBd()
     {
         $query = $this->createQueryBuilder('bd')
@@ -28,12 +29,14 @@ class BdRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    // total BD :
     public function countBd() {
         $query = $this->createQueryBuilder('bd')
             ->select('bd');
         return $query->getQuery()->getResult();
     }
 
+    // total BD on lend :
     public function countBdLend() {
         $query = $this->createQueryBuilder('bd')
             ->select('bd')

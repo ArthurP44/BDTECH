@@ -55,7 +55,7 @@
                                 <div class="carousel-inner">
                                     {% for bd in bds %}
                                         <div class="carousel-item {% if loop.first %} active {% endif %}">
-                                            <img class="d-block w-100" src="/uploads/covers/{{ bd.filename }}" alt="{{ bd.slug }}">
+                                            <img class="d-block w-100" src="/uploads/covers/{{ bd.filename }}" alt="{{ bd.slug }}" style="width: 380px; height: 500px">
                                         </div>
                                     {% endfor %}
                                 </div>

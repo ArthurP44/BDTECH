@@ -2,7 +2,7 @@
 
 body {
     background-color: lightgray;
-    background-image: url("../images/gaston_bg.jpg");
+    margin: 0;
 }
 
 a {
@@ -10,16 +10,29 @@ a {
 }
 
 .jumbotron{
-    background-color: whitesmoke;
+    background-color: beige;
 }
 
-//set carousel slide size
-.carousel {
-    width:380px;
-    height:500px;
+//set footer at the bottom :
+body {
+    margin: 0;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-content {
+    flex: 1;
 }
 
 //font-size for bd-index's table to avoid weird margin
 .table {
     font-size: 0.9em;
+}
+
+#connexion {
+    margin-left: 900px;
 }
