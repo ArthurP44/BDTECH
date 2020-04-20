@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}BdCollection index{% endblock %}
 
@@ -19,7 +19,6 @@
                 <td>{{ bd_collection.id }}</td>
                 <td>{{ bd_collection.name }}</td>
                 <td>
-                    <a href="{{ path('bd_collection_show', {'slug': bd_collection.slug}) }}">show</a>
                     <a href="{{ path('bd_collection_edit', {'slug': bd_collection.slug}) }}">edit</a>
                 </td>
             </tr>

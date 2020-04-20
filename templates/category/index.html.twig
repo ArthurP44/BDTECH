@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Category index{% endblock %}
 
@@ -19,7 +19,6 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>
-                    <a href="{{ path('category_show', {'slug': category.slug}) }}">show</a>
                     <a href="{{ path('category_edit', {'slug': category.slug}) }}">edit</a>
                 </td>
             </tr>

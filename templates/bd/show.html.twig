@@ -1,3 +1,9 @@
+{#{% if if app.user and is_granted('ROLE_ADMIN') %}
+    {% extends 'baseAdmin.html.twig' %}
+{% else %}
+    {% extends 'base.html.twig' %}
+{% endif %}#}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Bd{% endblock %}

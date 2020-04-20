@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Author index{% endblock %}
 
@@ -19,7 +19,6 @@
                 <td>{{ author.id }}</td>
                 <td>{{ author.name }}</td>
                 <td>
-                    <a href="{{ path('author_show', {'slug': author.slug}) }}">show</a>
                     <a href="{{ path('author_edit', {'slug': author.slug}) }}">edit</a>
                 </td>
             </tr>

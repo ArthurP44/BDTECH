@@ -11,13 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/category")
- */
+
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/", name="category_index", methods={"GET"})
+     * @Route("/admin/category", name="category_index", methods={"GET"})
      */
     public function index(CategoryRepository $categoryRepository): Response
     {
@@ -27,7 +25,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="category_new", methods={"GET","POST"})
+     * @Route("/admin/category/new", name="category_new", methods={"GET","POST"})
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -50,18 +48,18 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{slug}", name="category_show", methods={"GET"})
-     */
-    public function show(Category $category): Response
-    {
-        return $this->render('category/show.html.twig', [
-            'category' => $category,
-        ]);
-    }
+//    /**
+//     * @Route("/{slug}", name="category_show", methods={"GET"})
+//     */
+//    public function show(Category $category): Response
+//    {
+//        return $this->render('category/show.html.twig', [
+//            'category' => $category,
+//        ]);
+//    }
 
     /**
-     * @Route("/{slug}/edit", name="category_edit", methods={"GET","POST"})
+     * @Route("/admin/category/{slug}/edit", name="category_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Category $category, Slugify $slugify): Response
     {
@@ -83,7 +81,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="category_delete", methods={"DELETE"})
+     * @Route("/admin/category/{slug}", name="category_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Category $category): Response
     {

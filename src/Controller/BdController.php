@@ -12,23 +12,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/bd")
- */
 class BdController extends AbstractController
 {
     /**
-     * @Route("/", name="bd_index", methods={"GET"})
+     * @Route("/admin/bd", name="bd_index", methods={"GET"})
      */
     public function index(BdRepository $bdRepository): Response
     {
         return $this->render('bd/index.html.twig', [
-            'bds' => $bdRepository->findAll(),
+            'bds' => $bdRepository->findAllWithAuthorAndCategory(),
         ]);
     }
 
     /**
-     * @Route("/new", name="bd_new", methods={"GET","POST"})
+     * @Route("/admin/bd/new", name="bd_new", methods={"GET","POST"})
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -56,7 +53,7 @@ class BdController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="bd_show", methods={"GET"})
+     * @Route("bd/{slug}", name="bd_show", methods={"GET"})
      */
     public function show(Bd $bd): Response
     {
@@ -66,7 +63,7 @@ class BdController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/edit", name="bd_edit", methods={"GET","POST"})
+     * @Route("/admin/bd/{slug}/edit", name="bd_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Bd $bd, Slugify $slugify): Response
     {
@@ -87,7 +84,7 @@ class BdController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="bd_delete", methods={"DELETE"})
+     * @Route("/admin/bd/{slug}", name="bd_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Bd $bd): Response
     {

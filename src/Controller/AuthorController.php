@@ -11,13 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/author")
- */
 class AuthorController extends AbstractController
 {
     /**
-     * @Route("/", name="author_index", methods={"GET"})
+     * @Route("/admin/author", name="author_index", methods={"GET"})
      */
     public function index(AuthorRepository $authorRepository): Response
     {
@@ -27,7 +24,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="author_new", methods={"GET","POST"})
+     * @Route("/admin/author/new", name="author_new", methods={"GET","POST"})
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -50,18 +47,18 @@ class AuthorController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{slug}", name="author_show", methods={"GET"})
-     */
-    public function show(Author $author): Response
-    {
-        return $this->render('author/show.html.twig', [
-            'author' => $author,
-        ]);
-    }
+//    /**
+//     * @Route("/{slug}", name="author_show", methods={"GET"})
+//     */
+//    public function show(Author $author): Response
+//    {
+//        return $this->render('author/show.html.twig', [
+//            'author' => $author,
+//        ]);
+//    }
 
     /**
-     * @Route("/{slug}/edit", name="author_edit", methods={"GET","POST"})
+     * @Route("/admin/author/{slug}/edit", name="author_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Author $author, Slugify $slugify): Response
     {
@@ -82,7 +79,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="author_delete", methods={"DELETE"})
+     * @Route("/admin/author/{slug}", name="author_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Author $author): Response
     {

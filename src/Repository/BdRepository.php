@@ -19,6 +19,17 @@ class BdRepository extends ServiceEntityRepository
         parent::__construct($registry, Bd::class);
     }
 
+    public function findAllWithAuthorAndCategory(){
+        $query = $this->createQueryBuilder('bd')
+            ->leftJoin('bd.authors', 'a')
+            ->innerJoin('bd.category', 'c')
+            ->addSelect('a')
+            ->addSelect('c')
+            ->getQuery();
+
+        return $query->execute();
+    }
+
     // 5 last BD in db :
     public function getLastBd()
     {

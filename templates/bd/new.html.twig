@@ -1,6 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Ajouter une BD{% endblock %}
+
+{% block navbar %}
+    {% include '/navbar/navbarAdmin.html.twig' %}
+{% endblock %}
 
 {% block body %}
     <h1>Ajouter une BD</h1>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+
+</head>
+<body>
+<div class="page">
+    <header class="site-header">
+        {% block head %}
+            {% block navbar %}
+                {% include '/navbar/navbarAdmin.html.twig' %}
+            {% endblock %}
+
+            {% block stylesheets %}
+                {{ encore_entry_link_tags('app') }}
+            {% endblock %}
+        {% endblock %}
+    </header>
+    <main class="site-content">
+        {% block body %}{% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </main>
+    <footer class="site-footer">
+        <div class="navbar navbar-expand-lg navbar-light bg-dark d-flex justify-content-around">
+            <a href="https://github.com/ArthurP44" target="_blank"><img src="/build/logo_github.png"
+                                                                        style="height:80px; width:80px;"
+                                                                        alt="logo_github"></a>
+            <h6 class="text-white">Copyright {{ 'now'|date("Y") }}, Arthur Pralon - All rights reserved</h6>
+            <a href="https://www.linkedin.com/in/arthur-pralon/" target="_blank"><img
+                        src="/build/logo_linkedin.png"
+                        style="height:55px; width:60px;"
+                        alt="logo_linkedin"></a>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

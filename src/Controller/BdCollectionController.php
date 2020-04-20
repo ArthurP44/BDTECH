@@ -11,13 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/bd/collection")
- */
+
 class BdCollectionController extends AbstractController
 {
     /**
-     * @Route("/", name="bd_collection_index", methods={"GET"})
+     * @Route("/admin/collection", name="bd_collection_index", methods={"GET"})
      */
     public function index(BdCollectionRepository $bdCollectionRepository): Response
     {
@@ -27,7 +25,7 @@ class BdCollectionController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="bd_collection_new", methods={"GET","POST"})
+     * @Route("/admin/collection/new", name="bd_collection_new", methods={"GET","POST"})
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -50,18 +48,18 @@ class BdCollectionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{slug}", name="bd_collection_show", methods={"GET"})
-     */
-    public function show(BdCollection $bdCollection): Response
-    {
-        return $this->render('bd_collection/show.html.twig', [
-            'bd_collection' => $bdCollection,
-        ]);
-    }
+//    /**
+//     * @Route("/{slug}", name="bd_collection_show", methods={"GET"})
+//     */
+//    public function show(BdCollection $bdCollection): Response
+//    {
+//        return $this->render('bd_collection/show.html.twig', [
+//            'bd_collection' => $bdCollection,
+//        ]);
+//    }
 
     /**
-     * @Route("/{slug}/edit", name="bd_collection_edit", methods={"GET","POST"})
+     * @Route("/admin/collection/{slug}/edit", name="bd_collection_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, BdCollection $bdCollection, Slugify $slugify): Response
     {
@@ -82,7 +80,7 @@ class BdCollectionController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="bd_collection_delete", methods={"DELETE"})
+     * @Route("/admin/collection/{slug}", name="bd_collection_delete", methods={"DELETE"})
      */
     public function delete(Request $request, BdCollection $bdCollection): Response
     {

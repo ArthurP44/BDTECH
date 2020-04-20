@@ -18,6 +18,11 @@
             <li class="nav-item">
                 <a class="nav-link btn btn-outline-primary text-white mr-2" href="" id="series">Séries</a>
             </li>
+            {#{% if if app.user and is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-warning text-white mr-2" href="{{ path('bd_index') }}" id="admin">Administration</a>
+                </li>
+            {% endif %}#}
             <li class="nav-item ml-auto">
                 <a class="nav-link btn btn-outline-success text-white mr-2" href="" id="connexion">Connexion</a>
             </li>
