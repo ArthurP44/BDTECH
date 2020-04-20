@@ -1,4 +1,43 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col">
+                {{ form_start(form) }}
+                <div class="row mt-5">
+                    <div class='col-md-12'>{{ form_row(form.title) }}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>{{ form_row(form.category) }}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>{{ form_row(form.authors) }}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>{{ form_row(form.collection) }}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-6'>{{ form_row(form.edition) }}</div>
+                    <div class='col-md-6'>{{ form_row(form.collected_works) }}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-6'>{{ form_row(form.coverFile) }}</div>
+                    <div class='col-md-3'>{{ (form_row(form.creation_date)) }}</div>
+                    <div class='col-md-3'>{{ form_row(form.owned_bd_date) }}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-4'>{{ form_row(form.isbn) }}</div>
+                    <div class='col-md-4'>{{ form_row(form.price) }}</div>
+                    <div class='col-md-4'>{{ form_row(form.value) }}</div>
+                </div>
+                {{ form_widget(form) }}
+                <div class="row mt-5 d-flex justify-content-center">
+                    <button class="btn btn-outline-success mr-4 ml-3">{{ button_label|default('Enregistrer') }}</button>
+                    <a class="btn btn-outline-danger"  href="{{ path('bd_index') }}">retour</a>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+

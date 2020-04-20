@@ -34,7 +34,7 @@ class BdType extends AbstractType
                 'label' => 'Auteur(s) :',
                 'placeholder' => 'Choisissez un Auteur',
                 'class' => Author::class,
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => true,
                 'by_reference' => false,
                 'choice_label' => 'name'
@@ -49,18 +49,14 @@ class BdType extends AbstractType
                 'required' => false
             ])
             ->add('creation_date', DateType::class, [
-                'label' => 'Date de création :',
-                'format' => 'dMy',
-                'widget' => 'choice',
-                'years' => range(date('Y'), date('Y') - 99),
+                'label' => 'Date de publication originale :',
+                'widget' => 'single_text',
                 'required' => false,
                 'help' => "Seule l'année est prise en compte",
             ])
             ->add('owned_bd_date', DateType::class, [
                 'label' => 'Date de mon exemplaire :',
-                'format' => 'dMy',
-                'widget' => 'choice',
-                'years' => range(date('Y'), date('Y') - 99),
+                'widget' => 'single_text',
                 'required' => false,
                 'help' => "Seule l'année est prise en compte",
             ])
