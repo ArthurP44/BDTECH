@@ -25,4 +25,15 @@ class AuthorRepository extends ServiceEntityRepository
             ->distinct('author');
         return $query->getQuery()->getResult();
     }
+
+    public function findAllWithBd()
+    {
+        $query = $this->createQueryBuilder('a')
+            ->leftJoin('a.bds', 'bd')
+            ->addSelect('bd')
+            ->orderBy('a.name','ASC')
+            ->getQuery();
+
+        return $query->execute();
+    }
 }

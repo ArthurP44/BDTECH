@@ -25,6 +25,7 @@ class BdRepository extends ServiceEntityRepository
             ->innerJoin('bd.category', 'c')
             ->addSelect('a')
             ->addSelect('c')
+            ->orderBy('bd.created_at', 'DESC')
             ->getQuery();
 
         return $query->execute();

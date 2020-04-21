@@ -3,9 +3,13 @@
 {% block title %}New BdCollection{% endblock %}
 
 {% block body %}
-    <h1>Create new BdCollection</h1>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="mb-4">Ajouter une Série</h1>
 
-    {{ include('bd_collection/_form.html.twig') }}
+            {{ include('bd_collection/_form.html.twig') }}
 
-    <a href="{{ path('bd_collection_index') }}">back to list</a>
+            <a class="btn btn-primary mt-4" href="{{ path('bd_collection_index') }}">Retour</a>
+        </div>
+    </div>
 {% endblock %}

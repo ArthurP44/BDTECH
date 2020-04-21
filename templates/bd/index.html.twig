@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container-fluid mt-5">
-        <div class="jumbotron text-center">
+        <div class="jumbotron">
             <h1 class="mb-5 ">Tableau de bord</h1>
             <a class="btn btn-success mb-3" href="{{ path('bd_new') }}">Ajouter</a>
             <table class="table bg-white font-weight-lighter">
@@ -18,7 +18,6 @@
                     <th>En prêt :</th>
                     <th>Date d'ajout :</th>
                     <th></th>
-
                 </tr>
                 </thead>
                 <tbody>
@@ -38,13 +37,17 @@
                         <td>{{ bd.onLend ? 'Oui' : 'Non' }}</td>
                         <td>{{ bd.createdAt ? bd.createdAt|date('d-m-Y') : '' }}</td>
                         <td>
-                            <a class="btn btn-primary mb-3" href="{{ path('bd_show', {'slug': bd.slug}) }}">voir</a>
-                            <a class="btn btn-warning text-white ml-2 mb-3" href="{{ path('bd_edit', {'slug': bd.slug}) }}">modifier</a>
+                            <div class="row">
+                                <a class="btn btn-primary mb-3" href="{{ path('bd_show', {'slug': bd.slug}) }}">Voir</a>
+                                <a class="btn btn-warning text-white ml-2 mb-3 mr-4"
+                                   href="{{ path('bd_edit', {'slug': bd.slug}) }}">Modifier</a>
+                                {{ include('bd/_delete_form.html.twig') }}
+                            </div>
                         </td>
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="14">no records found</td>
+                        <td colspan="14">pas de BD...</td>
                     </tr>
                 {% endfor %}
                 </tbody>

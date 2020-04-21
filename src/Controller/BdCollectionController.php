@@ -20,7 +20,7 @@ class BdCollectionController extends AbstractController
     public function index(BdCollectionRepository $bdCollectionRepository): Response
     {
         return $this->render('bd_collection/index.html.twig', [
-            'bd_collections' => $bdCollectionRepository->findAll(),
+            'bd_collections' => $bdCollectionRepository->findAllWithBd(),
         ]);
     }
 

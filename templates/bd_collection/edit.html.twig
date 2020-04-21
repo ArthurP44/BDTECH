@@ -1,13 +1,13 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Edit BdCollection{% endblock %}
+{% block title %}Modifier Série{% endblock %}
 
 {% block body %}
-    <h1>Edit BdCollection</h1>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            {{ include('bd_collection/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    {{ include('bd_collection/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('bd_collection_index') }}">back to list</a>
-
-    {{ include('bd_collection/_delete_form.html.twig') }}
+            <a class="btn btn-primary mt-4" href="{{ path('bd_collection_index') }}">Retour</a>
+        </div>
+    </div>
 {% endblock %}

@@ -1,13 +1,15 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}New Author{% endblock %}
+{% block title %}Ajouter auteur{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Create new Author</h1>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="mb-4">Ajouter un auteur</h1>
 
-        {{ include('author/_form.html.twig') }}
+            {{ include('author/_form.html.twig') }}
 
-        <a href="{{ path('author_index') }}">back to list</a>
+            <a class="btn btn-primary mt-4" href="{{ path('author_index') }}">Retour</a>
+        </div>
     </div>
 {% endblock %}

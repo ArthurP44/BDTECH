@@ -1,34 +1,47 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}BdCollection index{% endblock %}
+{% block title %}Séries{% endblock %}
 
 {% block body %}
-    <h1>BdCollection index</h1>
+    <div class="container-fluid mt-5">
+        <div class="jumbotron">
+            <a class="btn btn-success mb-3" href="{{ path('bd_collection_new') }}">Ajouter</a>
+            <table class="table bg-white font-weight-lighter">
+                <thead>
+                <tr>
+                    <th>Id :</th>
+                    <th>Série :</th>
+                    <th>Nombre de volumes :</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for bd_collection in bd_collections %}
+                    <tr>
+                        <td>{{ bd_collection.id }}</td>
+                        <td>{{ bd_collection.name }}</td>
+                        <td>{% for bd in bd_collection.bds %}
+                                {% if loop.last %}
+                                    {{ loop.length }}
+                                {% endif %}
+                            {% endfor %}</td>
+                        <td></td>
+                        <td>
+                            <div class="row">
+                                <a class="btn btn-warning text-white mr-3"
+                                   href="{{ path('bd_collection_edit', {'slug': bd_collection.slug}) }}">Modifier</a>
+                                {{ include('bd_collection/_delete_form.html.twig') }}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">pas de séries...</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for bd_collection in bd_collections %}
-            <tr>
-                <td>{{ bd_collection.id }}</td>
-                <td>{{ bd_collection.name }}</td>
-                <td>
-                    <a href="{{ path('bd_collection_edit', {'slug': bd_collection.slug}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('bd_collection_new') }}">Create new</a>
+        </div>
+    </div>
 {% endblock %}

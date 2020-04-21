@@ -26,4 +26,15 @@ class BdCollectionRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function findAllWithBd()
+    {
+        $query = $this->createQueryBuilder('c')
+            ->leftJoin('c.bds', 'bd')
+            ->addSelect('bd')
+            ->orderBy('c.name','ASC')
+            ->getQuery();
+
+        return $query->execute();
+    }
+
 }
