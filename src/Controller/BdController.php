@@ -43,6 +43,8 @@ class BdController extends AbstractController
             $entityManager->persist($bd);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Une nouvelle BD a été ajoutée.');
+
             return $this->redirectToRoute('bd_index');
         }
 
@@ -74,6 +76,8 @@ class BdController extends AbstractController
             $bd->setSlug($slugify->generate($bd->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('warning', 'La BD a été modifiée avec succès.');
+
             return $this->redirectToRoute('bd_index');
         }
 
@@ -93,6 +97,8 @@ class BdController extends AbstractController
             $entityManager->remove($bd);
             $entityManager->flush();
         }
+
+        $this->addFlash('danger', 'La BD a été supprimée avec succès.');
 
         return $this->redirectToRoute('bd_index');
     }

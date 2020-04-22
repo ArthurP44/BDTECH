@@ -38,6 +38,8 @@ class AuthorController extends AbstractController
             $entityManager->persist($author);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Un nouvel Auteur a été ajouté avec succès.');
+
             return $this->redirectToRoute('author_index');
         }
 
@@ -69,6 +71,8 @@ class AuthorController extends AbstractController
             $author->setSlug($slugify->generate($author->getName()));
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('warning', 'L\'auteur a été modifié avec succès.');
+
             return $this->redirectToRoute('author_index');
         }
 
@@ -88,6 +92,8 @@ class AuthorController extends AbstractController
             $entityManager->remove($author);
             $entityManager->flush();
         }
+
+        $this->addFlash('danger', 'L\'auteur a été supprimé avec succès.');
 
         return $this->redirectToRoute('author_index');
     }

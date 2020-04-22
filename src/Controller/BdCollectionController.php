@@ -39,6 +39,8 @@ class BdCollectionController extends AbstractController
             $entityManager->persist($bdCollection);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Une série a été ajoutée avec succès.');
+
             return $this->redirectToRoute('bd_collection_index');
         }
 
@@ -70,6 +72,8 @@ class BdCollectionController extends AbstractController
             $bdCollection->setSlug($slugify->generate($bdCollection->getName()));
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('warning', 'La série a été modifée avec succès.');
+
             return $this->redirectToRoute('bd_collection_index');
         }
 
@@ -89,6 +93,8 @@ class BdCollectionController extends AbstractController
             $entityManager->remove($bdCollection);
             $entityManager->flush();
         }
+
+        $this->addFlash('danger', 'La série a été supprimée avec succès.');
 
         return $this->redirectToRoute('bd_collection_index');
     }
