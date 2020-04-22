@@ -24,6 +24,15 @@ class BdCollectionController extends AbstractController
         ]);
     }
 
+    //embed controller in navbar
+    public function listBdCollections(BdCollectionRepository $repository)
+    {
+        return $this->render('bd_collection/_list.html.twig', [
+            'BdCollections' => $repository->findAll()
+        ]);
+
+    }
+
     /**
      * @Route("/admin/collection/new", name="bd_collection_new", methods={"GET","POST"})
      */
@@ -50,15 +59,15 @@ class BdCollectionController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/{slug}", name="bd_collection_show", methods={"GET"})
-//     */
-//    public function show(BdCollection $bdCollection): Response
-//    {
-//        return $this->render('bd_collection/show.html.twig', [
-//            'bd_collection' => $bdCollection,
-//        ]);
-//    }
+    /**
+     * @Route("/{slug}", name="bd_collection_show", methods={"GET"})
+     */
+    public function show(BdCollection $bdCollection): Response
+    {
+        return $this->render('bd_collection/show.html.twig', [
+            'bd_collection' => $bdCollection,
+        ]);
+    }
 
     /**
      * @Route("/admin/collection/{slug}/edit", name="bd_collection_edit", methods={"GET","POST"})

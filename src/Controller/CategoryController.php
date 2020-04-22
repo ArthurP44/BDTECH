@@ -24,6 +24,15 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    //embed controller in navbar
+    public function listCategories(CategoryRepository $repository)
+    {
+        return $this->render('category/_list.html.twig', [
+            'categories' => $repository->findAll()
+        ]);
+
+    }
+
     /**
      * @Route("/admin/category/new", name="category_new", methods={"GET","POST"})
      */
@@ -50,15 +59,15 @@ class CategoryController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/{slug}", name="category_show", methods={"GET"})
-//     */
-//    public function show(Category $category): Response
-//    {
-//        return $this->render('category/show.html.twig', [
-//            'category' => $category,
-//        ]);
-//    }
+    /**
+     * @Route("/{slug}", name="category_show", methods={"GET"})
+     */
+    public function show(Category $category): Response
+    {
+        return $this->render('category/show.html.twig', [
+            'category' => $category,
+        ]);
+    }
 
     /**
      * @Route("/admin/category/{slug}/edit", name="category_edit", methods={"GET","POST"})

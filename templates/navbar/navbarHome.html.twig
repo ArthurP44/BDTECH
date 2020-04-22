@@ -10,13 +10,13 @@
                 <a class="nav-link btn btn-outline-primary text-white mr-2" href="" id="liste">Liste</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-primary text-white mr-2" href="" id="genres">Genres</a>
+                {{ render(controller('App\\Controller\\CategoryController::listCategories')) }}
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-primary text-white mr-2" href="" id="auteurs">Auteurs</a>
+                {{ render(controller('App\\Controller\\AuthorController::listAuthors')) }}
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-primary text-white mr-2" href="" id="series">Séries</a>
+                {{ render(controller('App\\Controller\\BdCollectionController::listBdCollections')) }}
             </li>
             {#{% if if app.user and is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">

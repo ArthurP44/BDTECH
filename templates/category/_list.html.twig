@@ -1,0 +1,12 @@
+<div class="dropdown show">
+    <a class="btn btn-outline-primary text-white dropdown-toggle mr-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        Catégories
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        {% for category in categories %}
+            <a class="dropdown-item" href="{{ path('category_show', {'slug': category.slug}) }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+</div>

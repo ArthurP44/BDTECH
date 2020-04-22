@@ -23,6 +23,15 @@ class AuthorController extends AbstractController
         ]);
     }
 
+    //embed controller in navbar
+    public function listAuthors(AuthorRepository $repository)
+    {
+        return $this->render('author/_list.html.twig', [
+            'authors' => $repository->findAll()
+        ]);
+
+    }
+
     /**
      * @Route("/admin/author/new", name="author_new", methods={"GET","POST"})
      */
@@ -49,15 +58,15 @@ class AuthorController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/{slug}", name="author_show", methods={"GET"})
-//     */
-//    public function show(Author $author): Response
-//    {
-//        return $this->render('author/show.html.twig', [
-//            'author' => $author,
-//        ]);
-//    }
+    /**
+     * @Route("/{slug}", name="author_show", methods={"GET"})
+     */
+    public function show(Author $author): Response
+    {
+        return $this->render('author/show.html.twig', [
+            'author' => $author,
+        ]);
+    }
 
     /**
      * @Route("/admin/author/{slug}/edit", name="author_edit", methods={"GET","POST"})
