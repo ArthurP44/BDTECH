@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ class CategoryController extends AbstractController
 {
     /**
      * @Route("/admin/category", name="category_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(CategoryRepository $categoryRepository): Response
     {
@@ -35,6 +37,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/admin/category/new", name="category_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -71,6 +74,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/admin/category/{slug}/edit", name="category_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Category $category, Slugify $slugify): Response
     {
@@ -95,6 +99,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/admin/category/{slug}", name="category_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Category $category): Response
     {

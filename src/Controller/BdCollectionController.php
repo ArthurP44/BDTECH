@@ -6,6 +6,7 @@ use App\Entity\BdCollection;
 use App\Form\BdCollectionType;
 use App\Repository\BdCollectionRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ class BdCollectionController extends AbstractController
 {
     /**
      * @Route("/admin/collection", name="bd_collection_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(BdCollectionRepository $bdCollectionRepository): Response
     {
@@ -35,6 +37,7 @@ class BdCollectionController extends AbstractController
 
     /**
      * @Route("/admin/collection/new", name="bd_collection_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -71,6 +74,7 @@ class BdCollectionController extends AbstractController
 
     /**
      * @Route("/admin/collection/{slug}/edit", name="bd_collection_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, BdCollection $bdCollection, Slugify $slugify): Response
     {
@@ -94,6 +98,7 @@ class BdCollectionController extends AbstractController
 
     /**
      * @Route("/admin/collection/{slug}", name="bd_collection_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, BdCollection $bdCollection): Response
     {

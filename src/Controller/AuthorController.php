@@ -6,6 +6,7 @@ use App\Entity\Author;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ class AuthorController extends AbstractController
 {
     /**
      * @Route("/admin/author", name="author_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(AuthorRepository $authorRepository): Response
     {
@@ -34,6 +36,7 @@ class AuthorController extends AbstractController
 
     /**
      * @Route("/admin/author/new", name="author_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -70,6 +73,7 @@ class AuthorController extends AbstractController
 
     /**
      * @Route("/admin/author/{slug}/edit", name="author_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Author $author, Slugify $slugify): Response
     {
@@ -93,6 +97,7 @@ class AuthorController extends AbstractController
 
     /**
      * @Route("/admin/author/{slug}", name="author_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Author $author): Response
     {

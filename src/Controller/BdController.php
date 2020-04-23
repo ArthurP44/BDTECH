@@ -7,6 +7,7 @@ use App\Entity\Bd;
 use App\Form\BdType;
 use App\Repository\BdRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ class BdController extends AbstractController
 {
     /**
      * @Route("/admin/bd", name="bd_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(BdRepository $bdRepository): Response
     {
@@ -26,6 +28,7 @@ class BdController extends AbstractController
 
     /**
      * @Route("/admin/bd/new", name="bd_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -66,6 +69,7 @@ class BdController extends AbstractController
 
     /**
      * @Route("/admin/bd/{slug}/edit", name="bd_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Bd $bd, Slugify $slugify): Response
     {
@@ -89,6 +93,7 @@ class BdController extends AbstractController
 
     /**
      * @Route("/admin/bd/{slug}", name="bd_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Bd $bd): Response
     {
