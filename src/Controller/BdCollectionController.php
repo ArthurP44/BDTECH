@@ -60,7 +60,7 @@ class BdCollectionController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="bd_collection_show", methods={"GET"})
+     * @Route("collection/{slug}", name="bd_collection_show", methods={"GET"})
      */
     public function show(BdCollection $bdCollection): Response
     {

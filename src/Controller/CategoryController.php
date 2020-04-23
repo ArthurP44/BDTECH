@@ -60,7 +60,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="category_show", methods={"GET"})
+     * @Route("/category/{slug}", name="category_show", methods={"GET"})
      */
     public function show(Category $category): Response
     {

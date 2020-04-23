@@ -59,7 +59,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="author_show", methods={"GET"})
+     * @Route("author/{slug}", name="author_show", methods={"GET"})
      */
     public function show(Author $author): Response
     {
