@@ -64,6 +64,7 @@ class BdController extends AbstractController
     {
         return $this->render('bd/show.html.twig', [
             'bd' => $bd,
+            'authors' => $bd->getAuthors(),
         ]);
     }
 

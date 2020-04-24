@@ -1,76 +1,99 @@
-{#{% if if app.user and is_granted('ROLE_ADMIN') %}
-    {% extends 'baseAdmin.html.twig' %}
-{% else %}
-    {% extends 'base.html.twig' %}
-{% endif %}#}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Bd{% endblock %}
 
 {% block body %}
-    <h1>Bd</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ bd.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ bd.title }}</td>
-            </tr>
-            <tr>
-                <th>Edition</th>
-                <td>{{ bd.edition }}</td>
-            </tr>
-            <tr>
-                <th>Collected_works</th>
-                <td>{{ bd.collectedWorks }}</td>
-            </tr>
-            <tr>
-                <th>Creation_date</th>
-                <td>{{ bd.creationDate ? bd.creationDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Owned_bd_date</th>
-                <td>{{ bd.ownedBdDate ? bd.ownedBdDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Value</th>
-                <td>{{ bd.value }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ bd.price }}</td>
-            </tr>
-            <tr>
-                <th>Comment</th>
-                <td>{{ bd.comment }}</td>
-            </tr>
-            <tr>
-                <th>Isbn</th>
-                <td>{{ bd.isbn }}</td>
-            </tr>
-            <tr>
-                <th>On_lend</th>
-                <td>{{ bd.onLend ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Filename</th>
-                <td>{{ bd.filename }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ bd.createdAt ? bd.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('bd_index') }}">Retour</a>
-
-    <a href="{{ path('bd_edit', {'slug': bd.slug}) }}">Modifier</a>
-
-    {{ include('bd/_delete_form.html.twig') }}
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card mb-3" style="max-width: 540px; max-height: 600px">
+                                <div class="row no-gutters d-flex justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ bd.title }}</h5>
+                                            {% for author in authors %}
+                                                <p class="card-text text-muted">{{ author.name }}</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <div class="card mb-3 mt-4" style="max-height: 30.5em; max-width: 22em;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-8">
+                                        <div class="card-body" style="height: 30.5em; width: 24em;">
+                                            <img src="/uploads/covers/{{ bd.filename }}" alt="bd cover"
+                                                 style="height: 28em; width: 19.3em">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="card mb-3 ml-5 mt-3" style="max-width: 540px;">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card-body" style="height: 40.6em; width: 35em;">
+                                    <div class="container ml-2  mt-4">
+                                        <p class="card-text"><strong>Genre : </strong>{{ bd.category.name }}</p>
+                                        <p class="card-text"><strong>Série : </strong>{{ bd.collection.name }}</p>
+                                        {% if bd.edition %}
+                                            <p class="card-text"><strong>Édition : </strong>{{ bd.edition }}</p>
+                                        {% else %}
+                                            <p class="card-text"><strong>Édition : </strong>{{ 'N/A' }}</p>
+                                        {% endif %}
+                                        {% if bd.collectedWorks %}
+                                            <p class="card-text"><strong>Collection : </strong>{{ bd.collectedWorks }}</p>
+                                        {% else %}
+                                            <p class="card-text"><strong>Collection : </strong>{{ 'N/A' }}</p>
+                                        {% endif %}
+                                        {% if bd.creationDate %}
+                                            <p class="card-text"><strong>Année de publication : </strong>{{  bd.creationDate|date('Y') }}</p>
+                                        {% else %}
+                                            <p class="card-text"><strong>Année de publication : </strong>{{ 'N/A' }}</p>
+                                        {% endif %}
+                                        {% if bd.ownedBdDate %}
+                                            <p class="card-text"><strong>Année de mon édition : </strong>{{  bd.ownedBdDate|date('Y') }}</p>
+                                        {% else %}
+                                            <p class="card-text"><strong>Année de mon édition : </strong>{{ 'N/A' }}</p>
+                                        {% endif %}
+                                        {% if bd.value  %}
+                                            <p class="card-text"><strong>Cote : </strong>{{ bd.value }}</p>
+                                        {% else %}
+                                            <p class="card-text"><strong>Cote : </strong>{{ 'N/A' }}</p>
+                                        {% endif %}
+                                        {% if bd.price  %}
+                                            <p class="card-text"><strong>Prix : </strong>{{ bd.price }}</p>
+                                        {% else %}
+                                            <p class="card-text"><strong>Prix : </strong>{{ 'N/A' }}</p>
+                                        {% endif %}
+                                        {% if bd.isbn  %}
+                                            <p class="card-text"><strong>ISBN : </strong>{{ bd.isbn }}</p>
+                                        {% else %}
+                                            <p class="card-text"><strong>ISBN : </strong>{{ 'N/A' }}</p>
+                                        {% endif %}
+                                        <p class="card-text"><strong>En prêt
+                                                : </strong>{{ bd.onLend ? 'Oui' : 'Non' }}
+                                        </p>
+                                        {% if bd.comment %}
+                                            <p class="card-text"><strong>Commentaire : </strong>{{ bd.comment }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
