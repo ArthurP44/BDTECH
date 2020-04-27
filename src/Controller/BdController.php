@@ -7,6 +7,7 @@ use App\Entity\Bd;
 use App\Form\BdType;
 use App\Repository\BdRepository;
 use App\Service\Slugify;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -123,10 +124,15 @@ class BdController extends AbstractController
      * @Route("/list", name="bd_list", methods={"GET"})
      * @return Response
      */
-    public function bdList(): Response
+    public function bdList(PaginatorInterface $paginator, Request $request): Response
     {
+        $bds = $paginator->paginate(
+            $this->repository->findAllforListQuery(),
+            $request->query->getInt('page', 1),
+            12
+            );
         return $this->render('bd/list.html.twig', [
-           'bds' => $this->repository->findAllforList(),
+           'bds' => $bds,
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Bd;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method Bd|null find($id, $lockMode = null, $lockVersion = null)
@@ -61,12 +62,12 @@ class BdRepository extends ServiceEntityRepository
     }
 
     // list of all BD with cover and title
-    public function findAllforList()
+    public function findAllforListQuery(): Query
     {
         $query = $this->createQueryBuilder('bd')
             ->select('bd.title', 'bd.slug', 'bd.filename')
             ->orderBy('bd.created_at', 'DESC');
-        return $query->getQuery()->getResult();
+        return $query->getQuery();
     }
 
 }
