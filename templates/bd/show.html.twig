@@ -45,7 +45,11 @@
                                 <div class="card-body" style="height: 40.6em; width: 35em;">
                                     <div class="container ml-2  mt-4">
                                         <p class="card-text"><strong>Genre : </strong>{{ bd.category.name }}</p>
-                                        <p class="card-text"><strong>Série : </strong>{{ bd.collection.name }}</p>
+                                        {% if bd.collection.name is defined %}
+                                            <p class="card-text"><strong>Série : </strong>{{ bd.collection.name }}</p>
+                                        {% else %}
+                                            <p class="card-text"><strong>Série : </strong>{{ 'N/A' }}</p>
+                                        {% endif %}
                                         {% if bd.edition %}
                                             <p class="card-text"><strong>Édition : </strong>{{ bd.edition }}</p>
                                         {% else %}

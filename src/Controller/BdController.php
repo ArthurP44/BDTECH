@@ -16,13 +16,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class BdController extends AbstractController
 {
     /**
+     * @var BDRepository
+     */
+    private $repository;
+
+    public function __construct(BdRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
      * @Route("/admin/bd", name="bd_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(BdRepository $bdRepository): Response
+    public function index(): Response
     {
         return $this->render('bd/index.html.twig', [
-            'bds' => $bdRepository->findAllWithAuthorAndCategory(),
+            'bds' => $this->repository->findAllWithAuthorAndCategory(),
         ]);
     }
 
@@ -98,7 +108,7 @@ class BdController extends AbstractController
      */
     public function delete(Request $request, Bd $bd): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$bd->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $bd->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($bd);
             $entityManager->flush();
@@ -107,5 +117,16 @@ class BdController extends AbstractController
         $this->addFlash('danger', 'La BD a été supprimée avec succès.');
 
         return $this->redirectToRoute('bd_index');
+    }
+
+    /**
+     * @Route("/list", name="bd_list", methods={"GET"})
+     * @return Response
+     */
+    public function bdList(): Response
+    {
+        return $this->render('bd/list.html.twig', [
+           'bds' => $this->repository->findAllforList(),
+        ]);
     }
 }

@@ -19,7 +19,9 @@ class BdRepository extends ServiceEntityRepository
         parent::__construct($registry, Bd::class);
     }
 
-    public function findAllWithAuthorAndCategory(){
+    // get BD with author and category for index display
+    public function findAllWithAuthorAndCategory()
+    {
         $query = $this->createQueryBuilder('bd')
             ->leftJoin('bd.authors', 'a')
             ->innerJoin('bd.category', 'c')
@@ -42,17 +44,28 @@ class BdRepository extends ServiceEntityRepository
     }
 
     // total BD :
-    public function countBd() {
+    public function countBd()
+    {
         $query = $this->createQueryBuilder('bd')
             ->select('bd');
         return $query->getQuery()->getResult();
     }
 
     // total BD on lend :
-    public function countBdLend() {
+    public function countBdLend()
+    {
         $query = $this->createQueryBuilder('bd')
             ->select('bd')
             ->where('bd.on_lend = true');
+        return $query->getQuery()->getResult();
+    }
+
+    // list of all BD with cover and title
+    public function findAllforList()
+    {
+        $query = $this->createQueryBuilder('bd')
+            ->select('bd.title', 'bd.slug', 'bd.filename')
+            ->orderBy('bd.created_at', 'DESC');
         return $query->getQuery()->getResult();
     }
 

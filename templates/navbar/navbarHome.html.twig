@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-primary text-white mr-2" href="" id="liste">Liste</a>
+                <a class="nav-link btn btn-outline-primary text-white mr-2" href="{{ path('bd_list') }}" id="liste">Liste</a>
             </li>
             <li class="nav-item">
                 {{ render(controller('App\\Controller\\CategoryController::listCategories')) }}
