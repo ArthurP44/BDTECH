@@ -36,4 +36,10 @@ class AuthorRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
+    public function findAllBdByAuthor()
+    {
+
+    }
+
 }

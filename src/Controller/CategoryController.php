@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Bd;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Service\Slugify;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,21 +18,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
+     * @var CategoryRepository
+     */
+    private $repository;
+
+    public function __construct(CategoryRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
      * @Route("/admin/category", name="category_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(CategoryRepository $categoryRepository): Response
+    public function index(): Response
     {
         return $this->render('category/index.html.twig', [
-            'categories' => $categoryRepository->findAllWithBd(),
+            'categories' => $this->repository->findAllWithBd(),
         ]);
     }
 
     //embed controller in navbar
-    public function listCategories(CategoryRepository $repository)
+    public function listCategories()
     {
         return $this->render('category/_list.html.twig', [
-            'categories' => $repository->findAll()
+            'categories' => $this->repository->findAll()
         ]);
 
     }
@@ -65,10 +77,20 @@ class CategoryController extends AbstractController
     /**
      * @Route("/category/{slug}", name="category_show", methods={"GET"})
      */
-    public function show(Category $category): Response
+    public function show(string $slug, PaginatorInterface $paginator): Response
     {
+        $category = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findOneBy(['name' => mb_strtolower($slug)]);
+
+        $bds = $paginator->paginate(
+            $this->getDoctrine()
+            ->getRepository(Bd::class)
+            ->findBy(['category' => $category], ['created_at' => 'DESC'])
+        );
+
         return $this->render('category/show.html.twig', [
-            'category' => $category,
+            'bds' => $bds,
         ]);
     }
 

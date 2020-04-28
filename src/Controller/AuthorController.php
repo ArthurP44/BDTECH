@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Author;
+use App\Entity\Bd;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use App\Service\Slugify;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AuthorController extends AbstractController
 {
+    /**
+     * @var AuthorRepository
+     */
+    private $repository;
+
+    public function __construct(AuthorRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * @Route("/admin/author", name="author_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
@@ -64,10 +76,20 @@ class AuthorController extends AbstractController
     /**
      * @Route("author/{slug}", name="author_show", methods={"GET"})
      */
-    public function show(Author $author): Response
+    public function show(string $slug, PaginatorInterface $paginator): Response
     {
+        $author = $this->getDoctrine()
+            ->getRepository(Author::class)
+            ->findOneBy(['slug' => mb_strtolower($slug)]);
+
+        $bds = $paginator->paginate(
+            $this->getDoctrine()
+                ->getRepository(Bd::class)
+                ->findBy(['author' => $author], ['created_at' => 'DESC'])
+        );
+
         return $this->render('author/show.html.twig', [
-            'author' => $author,
+            'bds' => $bds,
         ]);
     }
 

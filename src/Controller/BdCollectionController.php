@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Bd;
 use App\Entity\BdCollection;
 use App\Form\BdCollectionType;
 use App\Repository\BdCollectionRepository;
 use App\Service\Slugify;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,21 +18,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class BdCollectionController extends AbstractController
 {
     /**
+     * @var BdCollectionRepository
+     */
+    private $repository;
+
+    public function __construct(BdCollectionRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
      * @Route("/admin/collection", name="bd_collection_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(BdCollectionRepository $bdCollectionRepository): Response
+    public function index(): Response
     {
         return $this->render('bd_collection/index.html.twig', [
-            'bd_collections' => $bdCollectionRepository->findAllWithBd(),
+            'bd_collections' => $this->repository->findAllWithBd(),
         ]);
     }
 
     //embed controller in navbar
-    public function listBdCollections(BdCollectionRepository $repository)
+    public function listBdCollections()
     {
         return $this->render('bd_collection/_list.html.twig', [
-            'BdCollections' => $repository->findAll()
+            'BdCollections' => $this->repository->findAll()
         ]);
 
     }
@@ -65,10 +77,20 @@ class BdCollectionController extends AbstractController
     /**
      * @Route("collection/{slug}", name="bd_collection_show", methods={"GET"})
      */
-    public function show(BdCollection $bdCollection): Response
+    public function show(string $slug, PaginatorInterface $paginator): Response
     {
+        $bd_collection = $this->getDoctrine()
+            ->getRepository(BdCollection::class)
+            ->findOneBy(['slug' => mb_strtolower($slug)]);
+
+        $bds = $paginator->paginate(
+            $this->getDoctrine()
+                ->getRepository(Bd::class)
+                ->findBy(['collection' => $bd_collection], ['created_at' => 'DESC'])
+        );
+
         return $this->render('bd_collection/show.html.twig', [
-            'bd_collection' => $bdCollection,
+            'bds' => $bds,
         ]);
     }
 
