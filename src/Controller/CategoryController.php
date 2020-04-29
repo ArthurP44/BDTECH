@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Bd;
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Repository\BdRepository;
 use App\Repository\CategoryRepository;
 use App\Service\Slugify;
 use Knp\Component\Pager\PaginatorInterface;
@@ -77,16 +78,14 @@ class CategoryController extends AbstractController
     /**
      * @Route("/category/{slug}", name="category_show", methods={"GET"})
      */
-    public function show(string $slug, PaginatorInterface $paginator): Response
+    public function show(string $slug, PaginatorInterface $paginator, Request $request, BdRepository $bdRepository): Response
     {
-        $category = $this->getDoctrine()
-            ->getRepository(Category::class)
-            ->findOneBy(['name' => mb_strtolower($slug)]);
+        $category = $this->repository->findOneBy(['name' => mb_strtolower($slug)]);
 
         $bds = $paginator->paginate(
-            $this->getDoctrine()
-            ->getRepository(Bd::class)
-            ->findBy(['category' => $category], ['created_at' => 'DESC'])
+            $bdRepository->findBy(['category' => $category], ['created_at' => 'DESC']),
+            $request->query->getInt('page', 1),
+            12
         );
 
         return $this->render('category/show.html.twig', [

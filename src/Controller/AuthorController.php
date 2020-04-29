@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Author;
-use App\Entity\Bd;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use App\Service\Slugify;
@@ -76,21 +75,19 @@ class AuthorController extends AbstractController
     /**
      * @Route("author/{slug}", name="author_show", methods={"GET"})
      */
-    public function show(string $slug, PaginatorInterface $paginator): Response
+    public function show(Request $request, Author $author, PaginatorInterface $paginator): Response
     {
-        $author = $this->getDoctrine()
-            ->getRepository(Author::class)
-            ->findOneBy(['slug' => mb_strtolower($slug)]);
 
         $bds = $paginator->paginate(
-            $this->getDoctrine()
-                ->getRepository(Bd::class)
-                ->findBy(['author' => $author], ['created_at' => 'DESC'])
+            $this->repository->findAllBdByAuthorQuery($author->getName()),
+            $request->query->getInt('page', 1),
+            12
         );
 
         return $this->render('author/show.html.twig', [
             'bds' => $bds,
         ]);
+
     }
 
     /**

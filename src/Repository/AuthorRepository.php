@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Author;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method Author|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,7 @@ class AuthorRepository extends ServiceEntityRepository
         parent::__construct($registry, Author::class);
     }
 
+    // get all distinct authors in DB
     public function countAuthor() {
         $query = $this->createQueryBuilder('author')
             ->select('author')
@@ -26,6 +28,7 @@ class AuthorRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    // get all authors with bd count for author admin index
     public function findAllWithBd()
     {
         $query = $this->createQueryBuilder('a')
@@ -37,9 +40,18 @@ class AuthorRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    public function findAllBdByAuthor()
+    // get all BD list by author for list
+    public function findAllBdByAuthorQuery($author)
     {
+        $query = $this->createQueryBuilder('a')
 
+            ->leftJoin('a.bds', 'bd')
+            ->select('a.name', 'bd.title', 'bd.slug', 'bd.filename')
+            ->where('a.name = :author')
+            ->setParameter('author', $author);
+            /*->orderBy('bd.created_at', 'DESC')*/
+
+        return $query->getQuery();
     }
 
 }

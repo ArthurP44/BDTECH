@@ -77,16 +77,16 @@ class BdCollectionController extends AbstractController
     /**
      * @Route("collection/{slug}", name="bd_collection_show", methods={"GET"})
      */
-    public function show(string $slug, PaginatorInterface $paginator): Response
+    public function show(string $slug, PaginatorInterface $paginator, Request $request)
     {
-        $bd_collection = $this->getDoctrine()
-            ->getRepository(BdCollection::class)
-            ->findOneBy(['slug' => mb_strtolower($slug)]);
+        $bd_collection = $this->repository->findOneBy(['slug' => mb_strtolower($slug)]);
 
         $bds = $paginator->paginate(
             $this->getDoctrine()
                 ->getRepository(Bd::class)
-                ->findBy(['collection' => $bd_collection], ['created_at' => 'DESC'])
+                ->findBy(['collection' => $bd_collection], ['created_at' => 'DESC']),
+            $request->query->getInt('page', 1),
+            12
         );
 
         return $this->render('bd_collection/show.html.twig', [
