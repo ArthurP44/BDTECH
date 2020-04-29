@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top mb-4">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top mb-4 shadow p-3 mb-5 bg-white" >
     <a class="navbar-brand btn btn-primary text-white" href="{{ path('homepage') }}">BDTech'</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,28 +7,28 @@
     <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-warning text-white mr-2" href="{{ path('bd_index') }}"
+                <a class="nav-link btn btn-warning text-white mr-2" href="{{ path('bd_index') }}"
                    id="liste">BDs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-warning text-white mr-2" href="{{ path('author_index') }}"
+                <a class="nav-link btn btn-warning text-white mr-2" href="{{ path('author_index') }}"
                    id="auteurs">Auteurs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-warning text-white mr-2"
+                <a class="nav-link btn btn-warning text-white mr-2"
                    href={{ path('category_index') }} id="genres">Genres</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-warning text-white mr-2"
+                <a class="nav-link btn btn-warning text-white mr-2"
                    href={{ path('bd_collection_index') }} id="series">Séries</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-primary text-white mr-2"
+                <a class="nav-link btn btn-primary text-white mr-2"
                    href="" id="envies">Envies</a>
             </li>
         </ul>
     </div>
     <div class="d-flex justify-content-end">
-            <a class="nav-link btn btn-outline-success text-white mr-2" href="{{ path('app_logout') }}" id="deconnexion">Se déconnecter</a>
+            <a class="nav-link btn btn-success text-white mr-2" href="{{ path('app_logout') }}" id="deconnexion">Se déconnecter</a>
     </div>
 </nav>
