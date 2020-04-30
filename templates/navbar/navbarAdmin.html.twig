@@ -16,15 +16,19 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link btn btn-warning text-white mr-2"
-                   href={{ path('category_index') }} id="genres">Genres</a>
+                   href="{{ path('category_index') }}" id="genres">Genres</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link btn btn-warning text-white mr-2"
-                   href={{ path('bd_collection_index') }} id="series">Séries</a>
+                   href="{{ path('bd_collection_index') }}" id="series">Séries</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link btn btn-primary text-white mr-2"
-                   href="" id="envies">Envies</a>
+                   href="{{ path('bd_lend') }}" id="envies">Prêts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary text-white mr-2"
+                   href="" id="pret">Envies</a>
             </li>
         </ul>
     </div>

@@ -68,6 +68,6 @@ body {
 
 // make dropdown menus scrollable in navbar :
 .custom_scrollable-menu {
-  height: 250px;
+  max-height: 250px;
   overflow-y: auto;
 }

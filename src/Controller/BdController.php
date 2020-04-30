@@ -135,4 +135,23 @@ class BdController extends AbstractController
            'bds' => $bds,
         ]);
     }
+
+    /**
+     * @Route("/lend", name="bd_lend", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @return Response
+     */
+    public function BdLend(PaginatorInterface $paginator, Request $request): Response
+    {
+        $bds = $paginator->paginate(
+            $this->repository->getLendBd(),
+            $request->query->getInt('page', 1),
+            12
+        );
+        return $this->render('bd/lend.html.twig', [
+            'bds' => $bds,
+        ]);
+    }
+
+
 }

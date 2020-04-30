@@ -70,4 +70,13 @@ class BdRepository extends ServiceEntityRepository
         return $query->getQuery();
     }
 
+    public function getLendBd()
+    {
+        $query = $this->createQueryBuilder('bd')
+            ->select('bd.title', 'bd.slug', 'bd.filename')
+            ->where('bd.on_lend = true')
+            ->orderBy('bd.created_at', 'DESC');
+        return $query->getQuery();
+    }
+
 }

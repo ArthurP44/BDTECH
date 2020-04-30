@@ -1,0 +1,26 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="mt-5 pt-0 pb-3">
+            <div class="row">
+                {% for bd in bds %}
+                    <div class="col-md-4 d-flex justify-content-center">
+                        <a class="btn" href="{{ path('bd_show', {'slug': bd.slug}) }}">
+                            <div class="card mt-3 shadow" style="max-width: 22em; max-height: 36em" id="card-list">
+                                <div class="card-body mt-3" style="width: 22em; height: 33em;">
+                                    <img src="/uploads/covers/{{ bd.filename }}" alt="bd cover"
+                                         style="height: 26em; width: 18em">
+                                    <h5 class="card-title mt-4">{{ bd.title }}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="pagination">
+            {{ knp_pagination_render(bds) }}
+        </div>
+    </div>
+{% endblock %}
