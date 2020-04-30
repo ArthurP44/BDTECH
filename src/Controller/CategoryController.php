@@ -43,7 +43,7 @@ class CategoryController extends AbstractController
     public function listCategories()
     {
         return $this->render('category/_list.html.twig', [
-            'categories' => $this->repository->findAll()
+            'categories' => $this->repository->countCategory()
         ]);
 
     }

@@ -4,7 +4,7 @@
         Séries
     </a>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <div class="dropdown-menu custom_scrollable-menu" aria-labelledby="dropdownMenuLink">
         {% for bd_collection in BdCollections %}
             <a class="dropdown-item" href="{{ path('bd_collection_show', {'slug': bd_collection.slug}) }}">{{ bd_collection.name }}</a>
         {% endfor %}

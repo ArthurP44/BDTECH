@@ -22,7 +22,8 @@ class CategoryRepository extends ServiceEntityRepository
     public function countCategory() {
         $query = $this->createQueryBuilder('category')
             ->select('category')
-            ->distinct('category');
+            ->distinct('category')
+            ->orderBy('category.name', 'ASC');
         return $query->getQuery()->getResult();
     }
 

@@ -19,10 +19,13 @@ class BdCollectionRepository extends ServiceEntityRepository
         parent::__construct($registry, BdCollection::class);
     }
 
-    public function countBdCollection() {
+    public function countBdCollection()
+    {
         $query = $this->createQueryBuilder('collection')
             ->select('collection')
-            ->distinct('collection');
+            ->distinct('collection')
+            ->orderBy('collection.name', 'ASC');
+
         return $query->getQuery()->getResult();
     }
 
@@ -31,7 +34,7 @@ class BdCollectionRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('c')
             ->leftJoin('c.bds', 'bd')
             ->addSelect('bd')
-            ->orderBy('c.name','ASC')
+            ->orderBy('c.name', 'ASC')
             ->getQuery();
 
         return $query->execute();

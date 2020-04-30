@@ -40,7 +40,7 @@ class AuthorController extends AbstractController
     public function listAuthors(AuthorRepository $repository)
     {
         return $this->render('author/_list.html.twig', [
-            'authors' => $repository->findAll()
+            'authors' => $repository->countAuthor()
         ]);
 
     }

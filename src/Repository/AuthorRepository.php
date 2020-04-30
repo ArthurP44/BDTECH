@@ -21,10 +21,12 @@ class AuthorRepository extends ServiceEntityRepository
     }
 
     // get all distinct authors in DB
-    public function countAuthor() {
+    public function countAuthor()
+    {
         $query = $this->createQueryBuilder('author')
             ->select('author')
-            ->distinct('author');
+            ->distinct('author')
+            ->orderBy('author.name', 'ASC');
         return $query->getQuery()->getResult();
     }
 
@@ -34,7 +36,7 @@ class AuthorRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('a')
             ->leftJoin('a.bds', 'bd')
             ->addSelect('bd')
-            ->orderBy('a.name','ASC')
+            ->orderBy('a.name', 'ASC')
             ->getQuery();
 
         return $query->execute();
@@ -44,12 +46,11 @@ class AuthorRepository extends ServiceEntityRepository
     public function findAllBdByAuthorQuery($author)
     {
         $query = $this->createQueryBuilder('a')
-
             ->leftJoin('a.bds', 'bd')
             ->select('a.name', 'bd.title', 'bd.slug', 'bd.filename')
             ->where('a.name = :author')
             ->setParameter('author', $author);
-            /*->orderBy('bd.created_at', 'DESC')*/
+        /*->orderBy('bd.created_at', 'DESC')*/
 
         return $query->getQuery();
     }

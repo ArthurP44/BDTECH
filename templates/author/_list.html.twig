@@ -4,7 +4,7 @@
         Auteurs
     </a>
 
-    <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuLink">
+    <div class="dropdown-menu custom_scrollable-menu" aria-labelledby="dropdownMenuLink">
         {% for author in authors %}
             <a class="dropdown-item" href="{{ path('author_show', {'slug': author.slug}) }}">{{ author.name }}</a>
         {% endfor %}

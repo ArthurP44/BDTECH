@@ -4,7 +4,7 @@
         Catégories
     </a>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <div class="dropdown-menu custom_scrollable-menu" aria-labelledby="dropdownMenuLink">
         {% for category in categories %}
             <a class="dropdown-item" href="{{ path('category_show', {'slug': category.slug}) }}">{{ category.name }}</a>
         {% endfor %}

@@ -42,7 +42,7 @@ class BdCollectionController extends AbstractController
     public function listBdCollections()
     {
         return $this->render('bd_collection/_list.html.twig', [
-            'BdCollections' => $this->repository->findAll()
+            'BdCollections' => $this->repository->countBdCollection()
         ]);
 
     }

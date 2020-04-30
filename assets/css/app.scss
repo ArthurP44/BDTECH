@@ -9,10 +9,19 @@ a {
   text-decoration: none;
 }
 
+
+//jumbotron bg color :
+
 .jumbotron {
+  background-color: white;
+}
+
+//home jumbotron :
+#jumbo_home {
   background-color: ghostwhite;
 }
 
+//settings of carousel on homepage :
 .carousel {
   height: 500px;
   width: 380px;
@@ -23,6 +32,7 @@ body {
   margin: 0;
 }
 
+// settings for page display, see base.html.twig
 .page {
   display: flex;
   flex-direction: column;
@@ -54,4 +64,10 @@ body {
 
 #card-list{
   z-index: 1;
+}
+
+// make dropdown menus scrollable in navbar :
+.custom_scrollable-menu {
+  height: 250px;
+  overflow-y: auto;
 }

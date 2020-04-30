@@ -4,32 +4,35 @@
 
 {% block body %}
     <div class="container">
-        <div class="col-md-8 offset-2">
-            <div class="jumbotron mt-5 " id="login_box">
-                <form method="post">
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
+        <div class="jumbotron">
+            <div class="col-md-8 offset-2">
+                <div class="jumbotron mt-5 " id="login_box">
+                    <form method="post">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
 
-                    {% if app.user %}
-                        <div class="mb-3">
-                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                        </div>
-                    {% endif %}
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
 
-                    <label class="text-white" for="inputEmail">Email</label>
-                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-4" required autofocus>
-                    <label class="text-white" for="inputPassword">Mot de passe</label>
-                    <input type="password" name="password" id="inputPassword" class="form-control mb-4" required>
+                        <label class="text-white" for="inputEmail">Email</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-4" required autofocus>
+                        <label class="text-white" for="inputPassword">Mot de passe</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control mb-4" required>
 
-                    <input type="hidden" name="_csrf_token"
-                           value="{{ csrf_token('authenticate') }}"
-                    >
-                    <button class="btn btn-lg btn-primary" type="submit">
-                        Se connecter
-                    </button>
-                </form>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                        <button class="btn btn-lg btn-primary" type="submit">
+                            Se connecter
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
+
     </div>
 {% endblock %}

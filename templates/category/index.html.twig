@@ -6,7 +6,7 @@
     <div class="container-fluid mt-5">
         <div class="jumbotron">
             <a class="btn btn-success mb-3" href="{{ path('category_new') }}">Ajouter</a>
-            <table class="table bg-white font-weight-lighter">
+            <table class="table bg-white font-weight-lighter shadow-lg">
                 <thead>
                 <tr>
                     <th>Id :</th>
@@ -27,8 +27,6 @@
                             {% endfor %}</td>
                         <td>
                             <div class="row">
-                                <a class="btn btn-primary text-white mr-3"
-                                   href="{{ path('category_show', {'slug': category.slug}) }}">Voir</a>
                                 <a class="btn btn-warning text-white mr-3"
                                    href="{{ path('category_edit', {'slug': category.slug}) }}">Modifier</a>
                                 {{ include('category/_delete_form.html.twig') }}
