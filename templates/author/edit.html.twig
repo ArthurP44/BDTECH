@@ -5,9 +5,11 @@
 {% block body %}
     <div class="container mt-5">
         <div class="jumbotron">
-            {{ include('author/_form.html.twig', {'button_label': 'enregistrer'}) }}
-
-            <a class="btn btn-primary mt-4" href="{{ path('author_index') }}">retour</a>
+            <div class="col-md-8 offset-2">
+                <div class="card shadow-lg p-5">
+                    {{ include('author/_form.html.twig', {'button_label': 'enregistrer'}) }}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

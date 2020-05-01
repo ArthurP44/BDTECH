@@ -5,11 +5,12 @@
 {% block body %}
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="mb-4">Ajouter un Genre</h1>
-
-            {{ include('category/_form.html.twig') }}
-
-            <a class="btn btn-primary mt-4" href="{{ path('category_index') }}">Retour</a>
+            <div class="col-md-8 offset-2">
+                <h1 class="mb-4">Ajouter un Genre</h1>
+                <div class="card shadow-lg p-5">
+                    {{ include('category/_form.html.twig') }}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

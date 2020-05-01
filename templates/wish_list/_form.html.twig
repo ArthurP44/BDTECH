@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+<div class="d-flex justify-content-between">
+    <button class="btn btn-success">{{ button_label|default('enregistrer') }}</button>
+    <a class="btn btn-primary ml-4" href="{{ path('wish_list_index') }}">retour</a>
+</div>
+{{ form_end(form) }}

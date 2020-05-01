@@ -4,6 +4,8 @@
 
 {% block body %}
     <div class="container">
-        {{ include('bd/_form.html.twig', {'button_label': 'Modifier'})}}
+        <div class="card shadow-lg">
+            {{ include('bd/_form.html.twig', {'button_label': 'Modifier'}) }}
+        </div>
     </div>
 {% endblock %}
