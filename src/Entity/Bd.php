@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -24,16 +25,20 @@ class Bd
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="veuillez remplir ce champ")
+     * @Assert\Length(max="255", maxMessage="veuillez respecter le nombre max de caractères")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max="255", maxMessage="veuillez respecter le nombre max de caractères")
      */
     private $edition;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max="255", maxMessage="veuillez respecter le nombre max de caractères")
      */
     private $collected_works;
 
@@ -59,6 +64,7 @@ class Bd
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max="255", maxMessage="veuillez respecter le nombre max de caractères")
      */
     private $comment;
 

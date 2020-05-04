@@ -137,7 +137,7 @@ class BdController extends AbstractController
     }
 
     /**
-     * @Route("/lend", name="bd_lend", methods={"GET"})
+     * @Route("/admin/lend", name="bd_lend", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      * @return Response
      */
