@@ -49,16 +49,16 @@ class BdType extends AbstractType
                 'required' => false
             ])
             ->add('creation_date', DateType::class, [
-                'label' => 'Date de publication originale :',
-                'widget' => 'single_text',
+                'label' => 'Année de publication originale :',
+                'format' => 'dMy',
+                'years' => range(2020, 1940, 1),
                 'required' => false,
-                'help' => "Seule l'année est prise en compte",
             ])
             ->add('owned_bd_date', DateType::class, [
-                'label' => 'Date de mon exemplaire :',
-                'widget' => 'single_text',
+                'label' => 'Année de mon exemplaire :',
+                'years' => range(2020, 1940, 1),
+                'format' => 'dMy',
                 'required' => false,
-                'help' => "Seule l'année est prise en compte",
             ])
             ->add('value', IntegerType::class, [
                 'label' => 'Cote :',

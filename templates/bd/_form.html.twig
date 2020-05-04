@@ -21,8 +21,16 @@
                 </div>
                 <div class="row">
                     <div class='col-md-6'>{{ form_row(form.coverFile) }}</div>
-                    <div class='col-md-3'>{{ (form_row(form.creation_date)) }}</div>
-                    <div class='col-md-3'>{{ form_row(form.owned_bd_date) }}</div>
+                    <div class='col-md-3'>{{ (form_label(form.creation_date)) }}
+                        {{ form_widget(form.creation_date['day'],{'value' : '1', 'attr':{'style':'display:none'}}) }}
+                        {{ form_widget(form.creation_date['month'],{'value' : '1', 'attr':{'style':'display:none'}}) }}
+                        {{ form_widget(form.creation_date['year']) }}
+                    </div>
+                    <div class='col-md-3'>{{ form_label(form.owned_bd_date) }}
+                        {{ form_widget(form.owned_bd_date['day'], {'value' : '1', 'attr':{'style':'display:none'}}) }}
+                        {{ form_widget(form.owned_bd_date['month'],{'value' : '1', 'attr':{'style':'display:none'}}) }}
+                        {{ form_widget(form.owned_bd_date['year']) }}
+                    </div>
                 </div>
                 <div class="row">
                     <div class='col-md-4'>{{ form_row(form.isbn) }}</div>
