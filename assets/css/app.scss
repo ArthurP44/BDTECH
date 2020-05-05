@@ -3,20 +3,31 @@
 //logo navbar
 
 #bulle_logo {
-  padding-bottom: 50px;
-  background-image: url('../../public/build/logo_bulle.png');
+  margin-top: -50px;
+  padding-bottom: 110px;
+  background-image: url('../../public/build/logo_bdtech.png');
+  background-size: 140px 200px;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+
+#connexion {
+  padding-bottom: 60px;
+  padding-right: 40px;
+  background-image: url('../../public/build/connexion_black_font.png');
   background-size: 130px 90px;
   background-repeat: no-repeat;
   color: transparent;
 }
 
-/*#connexion {
+#deconnexion{
   padding-bottom: 60px;
-  padding-right: 20px;
+  padding-right: 40px;
+  background-image: url('../../public/build/deco_black.png');
   background-size: 130px 90px;
   background-repeat: no-repeat;
   color: transparent;
-}*/
+}
 
 body {
   background-color: white;
