@@ -1,5 +1,23 @@
 @import "~bootstrap/scss/bootstrap";
 
+//logo navbar
+
+#bulle_logo {
+  padding-bottom: 50px;
+  background-image: url('../../public/build/logo_bulle.png');
+  background-size: 130px 90px;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+
+/*#connexion {
+  padding-bottom: 60px;
+  padding-right: 20px;
+  background-size: 130px 90px;
+  background-repeat: no-repeat;
+  color: transparent;
+}*/
+
 body {
   background-color: white;
   margin: 0;
@@ -62,7 +80,7 @@ body {
   z-index: 2;
 }
 
-#card-list{
+#card-list {
   z-index: 1;
 }
 
