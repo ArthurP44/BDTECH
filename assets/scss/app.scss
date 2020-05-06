@@ -1,0 +1,74 @@
+@import "~bootstrap/scss/bootstrap";
+
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC);
+*{
+  font-family: 'Patrick Hand SC', cursive;
+}
+
+// MAIN FEATURES BASE :
+
+body {
+  background-color: white;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+//jumbotron bg color :
+
+.jumbotron {
+  background-color: white;
+}
+
+// settings for page display, see base.html.twig
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-content {
+  flex: 1;
+}
+
+//font-size for bd-index's table to avoid weird margin
+.table {
+  font-size: 0.9em;
+}
+
+//HOMEPAGE :
+
+//settings of carousel on homepage :
+.carousel {
+  height: 500px;
+  width: 380px;
+}
+
+//home jumbotron :
+#jumbo_home {
+  background-color: ghostwhite;
+}
+
+//LOGIN FORM :
+
+// jumbotron at /login :
+#login_box {
+  background-image: url("../images/cortomaltese.jpg");
+  background-size: contain;
+}
+
+
+//LIST CARD DISPLAY :
+
+// zoom hover card list
+#card-list:hover {
+  transition: all 0.4s;
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+#card-list {
+  z-index: 1;
+}

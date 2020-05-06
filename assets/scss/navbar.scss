@@ -1,0 +1,41 @@
+//NAVBAR :
+#navbar{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+  transition: top 0.3s;
+}
+
+//LOGO button BD
+#bulle_logo {
+  margin-top: -50px;
+  padding-bottom: 110px;
+  background-image: url('../../public/build/logo_bdtech.png');
+  background-size: 130px 200px;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+
+#connexion {
+  padding-bottom: 40px;
+  background-image: url('../../public/build/connexion_black_font.png');
+  background-size: 90px 70px;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+
+#deconnexion {
+  padding-bottom: 40px;
+  background-image: url('../../public/build/deco_black.png');
+  background-size: 90px 70px;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+
+// make dropdown menus scrollable in navbar :
+.custom_scrollable-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}
+

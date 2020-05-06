@@ -1,9 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top mb-4 shadow p-3 mb-5 bg-white rounded">
+<nav class="navbar navbar-expand-lg navbar-light mb-4 shadow p-3 mb-5 bg-white" id="navbar">
     <a class="navbar-brand btn btn-primary text-white" href="{{ path('homepage') }}">BDTech'</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -41,7 +37,7 @@
         </ul>
     </div>
     <div class="d-flex justify-content-end">
-        <a class="nav-link btn btn-success text-white mr-2" href="{{ path('app_logout') }}" id="deconnexion">Se
+        <a class="nav-link" href="{{ path('app_logout') }}" id="deconnexion">Se
             déconnecter</a>
     </div>
 </nav>
