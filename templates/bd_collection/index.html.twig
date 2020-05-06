@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container-fluid mt-5">
         <div class="jumbotron">
-            <a class="btn btn-success mb-3" href="{{ path('bd_collection_new') }}">Ajouter</a>
+            <a class="btn btn-outline-secondary mb-3" href="{{ path('bd_collection_new') }}">Ajouter</a>
             <table class="table bg-white font-weight-lighter shadow-lg">
                 <thead>
                 <tr>
@@ -28,7 +28,7 @@
                         <td></td>
                         <td>
                             <div class="row">
-                                <a class="btn btn-warning text-white mr-3"
+                                <a class="btn btn-outline-warning mr-3"
                                    href="{{ path('bd_collection_edit', {'slug': bd_collection.slug}) }}">Modifier</a>
                                 {{ include('bd_collection/_delete_form.html.twig') }}
                             </div>
