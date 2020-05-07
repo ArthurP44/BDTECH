@@ -15,14 +15,26 @@
   background-size: 120px 200px;
   background-repeat: no-repeat;
   color: transparent;
+  cursor: pointer;
 }
 
+#bulle_logo:active {
+  transform: translateY(3px);
+}
+
+//login/logout logos :
 #connexion {
   padding-bottom: 40px;
   background-image: url('../../public/build/connexion_black_font.png');
   background-size: 90px 70px;
   background-repeat: no-repeat;
   color: transparent;
+  cursor: pointer;
+
+}
+
+#connexion:active{
+  transform: translateY(3px);
 }
 
 #deconnexion {
@@ -31,11 +43,61 @@
   background-size: 90px 70px;
   background-repeat: no-repeat;
   color: transparent;
+  cursor: pointer;
+}
+
+#deconnexion:active{
+  transform: translateY(3px);
+}
+
+//liste button :
+#liste{
+  box-shadow: 0 6px black;
+}
+
+#liste:hover{
+  transform: translateY(1px);
+  box-shadow: 0 4px black;
+}
+
+#liste:active{
+  transform: translateY(4px);
+  box-shadow: 0 2px black;
+}
+
+//all dropdown buttons
+#dropdownMenuLink{
+  box-shadow: 0 6px black;
+}
+
+#dropdownMenuLink:hover{
+  transform: translateY(1px);
+  box-shadow: 0 4px black;
+}
+
+#dropdownMenuLink:active{
+  transform: translateY(4px);
+  box-shadow: 0 2px black;
 }
 
 // make dropdown menus scrollable in navbar :
 .custom_scrollable-menu {
   max-height: 250px;
   overflow-y: auto;
+}
+
+//button ADMIN in HomeNavbar
+#adminButton{
+  box-shadow: 0 6px orange;
+}
+
+#adminButton:hover{
+  transform: translateY(1px);
+  box-shadow: 0 4px orange;
+}
+
+#adminButton:active{
+  transform: translateY(4px);
+  box-shadow: 0 2px orange;
 }
 

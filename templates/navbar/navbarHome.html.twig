@@ -17,17 +17,17 @@
             {% if app.user and is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-warning mr-2" href="{{ path('bd_index') }}"
-                       id="admin">Administration</a>
+                       id="adminButton">Administration</a>
                 </li>
             {% endif %}
         </ul>
     </div>
     <div class="d-flex justify-content-end">
         {% if app.user %}
-            <a class="nav-link btn" href="{{ path('app_logout') }}"
+            <a class="pr-5 pt-1" href="{{ path('app_logout') }}"
                id="deconnexion">deconnexion</a>
         {% else %}
-            <a class="nav-link btn" href="{{ path('app_login') }}"
+            <a class="pr-5 pt-1" href="{{ path('app_login') }}"
                id="connexion">Connexion</a>
         {% endif %}
     </div>
