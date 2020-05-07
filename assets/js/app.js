@@ -2,6 +2,7 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import '../scss/app.scss';
 import '../scss/navbar.scss';
+import '../scss/homepage.scss';
 
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it

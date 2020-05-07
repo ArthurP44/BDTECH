@@ -6,40 +6,43 @@
     <div class="container-fluid mt-5">
         <div class="jumbotron">
             <a class="btn btn-outline-secondary mb-3" href="{{ path('category_new') }}">Ajouter</a>
-            <table class="table bg-white font-weight-lighter shadow-lg">
-                <thead>
-                <tr>
-                    <th>Id :</th>
-                    <th>Genre :</th>
-                    <th>Nombre de BD :</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for category in categories %}
+            <div class="container">
+                <table class="table bg-white font-weight-lighter shadow-lg">
+                    <thead>
                     <tr>
-                        <td>{{ category.id }}</td>
-                        <td>{{ category.name }}</td>
-                        <td>{% for bd in category.bds %}
-                                {% if loop.last %}
-                                    {{ loop.length }}
-                                {% endif %}
-                            {% endfor %}</td>
-                        <td>
-                            <div class="row">
-                                <a class="btn btn-outline-warning mr-3"
-                                   href="{{ path('category_edit', {'slug': category.slug}) }}">Modifier</a>
-                                {{ include('category/_delete_form.html.twig') }}
-                            </div>
-                        </td>
+                        <th>Id :</th>
+                        <th>Genre :</th>
+                        <th>Nombre de BD :</th>
+                        <th></th>
                     </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="3">pas de genres...</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.id }}</td>
+                            <td>{{ category.name }}</td>
+                            <td>{% for bd in category.bds %}
+                                    {% if loop.last %}
+                                        {{ loop.length }}
+                                    {% endif %}
+                                {% endfor %}</td>
+                            <td>
+                                <div class="row">
+                                    <a class="btn btn-outline-warning mr-3"
+                                       href="{{ path('category_edit', {'slug': category.slug}) }}">Modifier</a>
+                                    {{ include('category/_delete_form.html.twig') }}
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">pas de genres...</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 

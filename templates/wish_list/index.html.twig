@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container-fluid mt-5">
         <div class="jumbotron">
-            <a class="btn btn-success mb-3" href="{{ path('wish_list_new') }}">Ajouter</a>
+            <a class="btn btn-outline-secondary mb-3" href="{{ path('wish_list_new') }}">Ajouter</a>
             <table class="table bg-white font-weight-lighter shadow-lg">
                 <thead>
                 <tr>
@@ -25,7 +25,7 @@
                         <td>{{ wish_list.details }}</td>
                         <td>
                             <div class="row">
-                                <a class="btn btn-warning text-white mr-3" href="{{ path('wish_list_edit', {'id': wish_list.id}) }}">modifier</a>
+                                <a class="btn btn-outline-warning mr-3" href="{{ path('wish_list_edit', {'id': wish_list.id}) }}">modifier</a>
                                 {{ include('wish_list/_delete_form.html.twig') }}
                             </div>
                         </td>

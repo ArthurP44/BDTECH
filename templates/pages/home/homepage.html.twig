@@ -13,20 +13,16 @@
     <div class="container">
         <div class="jumbotron mt-5 pt-3 pb-3 pl-1 pr-1" id="jumbo_home">
             <div class="row">
-                <div class="col-md-4 d-flex justify-content-center">
-                    <img src="/build/cortomaltese.jpg" class="card-img-top" style="width: 300px; height: 150px"
-                         alt="corto">
+                <div class="col-md-4">
                 </div>
                 <div class="col-md-4 text-center">
-                    <div class="mt-4">
+                    <div class="mt-4 shadow font-italic rounded" id="card_hp">
                         {# ajouter app.user.name #}
-                        <h1>Bonjour</h1>
-                        <h2>Bienvenue sur BDTech'</h2>
+                        <h2>Bonjour</h2>
+                        <h3>Bienvenue sur BDTech'</h3>
                     </div>
                 </div>
-                <div class="col-md-4 d-flex justify-content-center">
-                    <img src="/build/blake_mortimer.jpg" class="card-img-top" style="width: 300px; height: 150px"
-                         alt="corto">
+                <div class="col-md-4">
                 </div>
             </div>
         </div>
@@ -42,8 +38,8 @@
                     <div class="col d-flex justify-content-center mb-4">
                         <div class="row">
                             <div class="card shadow" style="width: 400px; height: 70px;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Derniers ajouts : </h5>
+                                <div class="card-body" id="card_hp">
+                                    <h5 class="card-title font-italic text-center">Derniers ajouts : </h5>
 
                                 </div>
                             </div>
@@ -52,10 +48,10 @@
                     <div class="col d-flex justify-content-center">
                         <div class="row mb-4">
                             <div id="carouselExampleControls" class="carousel slide shadow-lg" data-ride="carousel">
-                                <div class="carousel-inner">
+                                <div class="carousel-inner" id="card_hp">
                                     {% for bd in bds %}
-                                        <div class="carousel-item {% if loop.first %} active {% endif %}">
-                                            <img class="d-block w-100" src="/uploads/covers/{{ bd.filename }}" alt="{{ bd.slug }}" style="width: 380px; height: 500px">
+                                        <div class="carousel-item {% if loop.first %} active {% endif %}" >
+                                            <img class="d-block w-100 p-2" src="/uploads/covers/{{ bd.filename }}" alt="{{ bd.slug }}" style="width: 380px; height: 500px" >
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -78,8 +74,8 @@
                     <div class="row mt-5 mb-5">
                         <div class="col-md d-flex justify-content-center">
                             <div class="card shadow" style="width: 180px; height: 70px;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Bds : {{ total_bd|length }}</h5>
+                                <div class="card-body" id="card_hp">
+                                    <h5 class="card-title font-italic text-center">Bds : {{ total_bd|length }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -87,8 +83,8 @@
                     <div class="row mb-5">
                         <div class="col-md d-flex justify-content-center">
                             <div class="card shadow" style="width: 180px; height: 70px;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Auteurs : {{ total_author|length }}</h5>
+                                <div class="card-body" id="card_hp">
+                                    <h5 class="card-title font-italic text-center">Auteurs : {{ total_author|length }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +92,8 @@
                     <div class="row mb-5">
                         <div class="col-md d-flex justify-content-center">
                             <div class="card shadow" style="width: 180px; height: 70px;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Genres : {{ total_category|length }}</h5>
+                                <div class="card-body" id="card_hp">
+                                    <h5 class="card-title font-italic text-center">Genres : {{ total_category|length }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -105,8 +101,8 @@
                     <div class="row mb-5">
                         <div class="col-md d-flex justify-content-center">
                             <div class="card shadow" style="width: 180px; height: 70px;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Séries : {{ total_collection|length }}</h5>
+                                <div class="card-body" id="card_hp">
+                                    <h5 class="card-title font-italic text-center">Séries : {{ total_collection|length }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -114,8 +110,8 @@
                     <div class="row">
                         <div class="col-md d-flex justify-content-center">
                             <div class="card shadow" style="width: 180px; height: 70px;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">BD en prêt : {{ total_lend|length }}</h5>
+                                <div class="card-body" id="card_hp">
+                                    <h5 class="card-title font-italic text-center">BD en prêt : {{ total_lend|length }}</h5>
                                 </div>
                             </div>
                         </div>
