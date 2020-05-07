@@ -101,3 +101,16 @@
   box-shadow: 0 2px orange;
 }
 
+#adminButtonDark{
+  box-shadow: 0 6px #34495e;
+}
+
+#adminButtonDark:hover{
+  transform: translateY(1px);
+  box-shadow: 0 4px #34495e;
+}
+
+#adminButtonDark:active{
+  transform: translateY(4px);
+  box-shadow: 0 2px #34495e;
+}
