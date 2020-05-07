@@ -4,6 +4,12 @@ namespace App\Form;
 
 use App\Entity\Author;
 use App\Entity\Bd;
+use App\Entity\BdCollection;
+use App\Entity\Category;
+use App\Repository\AuthorRepository;
+use App\Repository\BdCollectionRepository;
+use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -17,27 +23,43 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class BdType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category', null, [
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
                 'label' => 'Genre :',
                 'placeholder' => 'Choisissez un Genre',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                },
                 'choice_label' => 'name'
             ])
-            ->add('collection', null, [
+            ->add('collection', EntityType::class, [
+                'class' => BdCollection::class,
                 'label' => 'Série :',
                 'placeholder' => 'Choisissez une Série',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                },
                 'choice_label' => 'name'
             ])
             ->add('authors', EntityType::class, [
                 'label' => 'Auteur(s) :',
                 'placeholder' => 'Choisissez un Auteur',
                 'class' => Author::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');
+                },
                 'expanded' => false,
                 'multiple' => true,
                 'by_reference' => false,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
             ])
             ->add('title', TextType::class, ['label' => 'Titre :'])
             ->add('edition', TextType::class, [
