@@ -32,10 +32,15 @@ class CategoryController extends AbstractController
      * @Route("/admin/category", name="category_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $categories = $paginator->paginate(
+            $this->repository->findAllWithBd(),
+            $request->query->getInt('page', 1),
+            20
+        );
         return $this->render('category/index.html.twig', [
-            'categories' => $this->repository->findAllWithBd(),
+            'categories' => $categories,
         ]);
     }
 

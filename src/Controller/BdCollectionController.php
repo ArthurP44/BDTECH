@@ -31,10 +31,15 @@ class BdCollectionController extends AbstractController
      * @Route("/admin/collection", name="bd_collection_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $bdCollections = $paginator->paginate(
+            $this->repository->findAllWithBd(),
+            $request->query->getInt('page', 1),
+            20
+        );
         return $this->render('bd_collection/index.html.twig', [
-            'bd_collections' => $this->repository->findAllWithBd(),
+            'bd_collections' => $bdCollections,
         ]);
     }
 

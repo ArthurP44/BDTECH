@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\WishList;
 use App\Form\WishListType;
 use App\Repository\WishListRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,15 @@ class WishListController extends AbstractController
     /**
      * @Route("/", name="wish_list_index", methods={"GET"})
      */
-    public function index(WishListRepository $wishListRepository): Response
+    public function index(WishListRepository $wishListRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $wishLists = $paginator->paginate(
+            $wishListRepository->findAll(),
+            $request->query->getInt('page', 1),
+            20
+        );
         return $this->render('wish_list/index.html.twig', [
-            'wish_lists' => $wishListRepository->findAll(),
+            'wish_lists' => $wishLists,
         ]);
     }
 

@@ -15,7 +15,10 @@ class WishListType extends AbstractType
         $builder
             ->add('author', null, ['label' => 'Auteur :'])
             ->add('title', null, ['label' => 'Titre :'])
-            ->add('details', TextareaType::class, ['label' => 'Détails :'])
+            ->add('details', TextareaType::class, [
+                'label' => 'Détails :',
+                'required' => false,
+            ])
         ;
     }
 

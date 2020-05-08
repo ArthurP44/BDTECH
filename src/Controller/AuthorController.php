@@ -29,10 +29,15 @@ class AuthorController extends AbstractController
      * @Route("/admin/author", name="author_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(AuthorRepository $authorRepository): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $authors = $paginator->paginate(
+            $this->repository->findAllWithBd(),
+            $request->query->getInt('page', 1),
+            20
+        );
         return $this->render('author/index.html.twig', [
-            'authors' => $authorRepository->findAllWithBd(),
+            'authors' => $authors,
         ]);
     }
 
