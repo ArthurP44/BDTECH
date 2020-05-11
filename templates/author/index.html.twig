@@ -5,49 +5,48 @@
 {% block body %}
     <div class="container-fluid mt-5">
         <div class="jumbotron">
-            <a class="btn btn-outline-dark mb-3" href="{{ path('author_new') }}">Ajouter</a>
             <div class="container d-flex justify-content-center">
-                    <table class="table bg-white font-weight-lighter shadow-lg" id="table_author">
-                        <thead>
+                <a class="btn btn-secondary mb-3" href="{{ path('author_new') }}">Ajouter</a>
+                <table class="table bg-white font-weight-lighter shadow-lg" id="table_author">
+                    <thead>
+                    <tr>
+                        <th>Id :</th>
+                        <th>Nom :</th>
+                        <th>Nombre de BD :</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for author in authors %}
                         <tr>
-                            <th>Id :</th>
-                            <th>Nom :</th>
-                            <th>Nombre de BD :</th>
-                            <th></th>
+                            <td>{{ author.id }}</td>
+                            <td>{{ author.name }}</td>
+                            <td>
+                                {% for bd in author.bds %}
+                                    {% if loop.last %}
+                                        {{ loop.length }}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <a class="btn btn-outline-warning  mr-3"
+                                       href="{{ path('author_edit', {'slug': author.slug}) }}">Modifier</a>
+                                    {{ include('author/_delete_form.html.twig') }}
+                                </div>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        {% for author in authors %}
-                            <tr>
-                                <td>{{ author.id }}</td>
-                                <td>{{ author.name }}</td>
-                                <td>
-                                    {% for bd in author.bds %}
-                                        {% if loop.last %}
-                                            {{ loop.length }}
-                                        {% endif %}
-                                    {% endfor %}
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <a class="btn btn-outline-warning  mr-3"
-                                           href="{{ path('author_edit', {'slug': author.slug}) }}">Modifier</a>
-                                        {{ include('author/_delete_form.html.twig') }}
-                                    </div>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="3">pas d'auteurs..</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                <div class="pagination">
-                    {{ knp_pagination_render(authors) }}
-                </div>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">pas d'auteurs..</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
-
+            <div class="pagination">
+                {{ knp_pagination_render(authors) }}
+            </div>
         </div>
     </div>
 

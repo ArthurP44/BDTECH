@@ -5,53 +5,55 @@
 {% block body %}
     <div class="container-fluid mt-5">
         <div class="jumbotron">
-            <h1 class="mb-5 ">Tableau de bord</h1>
-            <a class="btn btn-outline-secondary mb-3" href="{{ path('bd_new') }}">Ajouter</a>
-            <table class="table bg-white font-weight-lighter shadow-lg">
-                <thead>
-                <tr>
-                    <th>Id :</th>
-                    <th>Titre :</th>
-                    <th>Genre :</th>
-                    <th>Auteur(s) :</th>
-                    <th>Editeur :</th>
-                    <th>En prêt :</th>
-                    <th>Date d'ajout :</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for bd in bds %}
+            <div class="container d-flex justify-content-center">
+                <a class="btn btn-secondary mb-3" href="{{ path('bd_new') }}">Ajouter</a>
+                <table class="table bg-white font-weight-lighter shadow-lg">
+                    <thead>
                     <tr>
-                        <td>{{ bd.id }}</td>
-                        <td>{{ bd.title }}</td>
-                        <td>
-                            {{ bd.category.name }}
-                        </td>
-                        <td>
-                            <ul>{% for author in bd.authors %}
-                                    <li>{{ author.name }}</li>
-                                {% endfor %}</ul>
-                        </td>
-                        <td>{{ bd.edition }}</td>
-                        <td>{{ bd.onLend ? 'Oui' : 'Non' }}</td>
-                        <td>{{ bd.createdAt ? bd.createdAt|date('d-m-Y') : '' }}</td>
-                        <td>
-                            <div class="row">
-                                <a class="btn btn-outline-secondary mb-3" href="{{ path('bd_show', {'slug': bd.slug}) }}">Voir</a>
-                                <a class="btn btn-outline-warning text-dark ml-2 mb-3 mr-4"
-                                   href="{{ path('bd_edit', {'slug': bd.slug}) }}">Modifier</a>
-                                {{ include('bd/_delete_form.html.twig') }}
-                            </div>
-                        </td>
+                        <th>Id :</th>
+                        <th>Titre :</th>
+                        <th>Genre :</th>
+                        <th>Auteur(s) :</th>
+                        <th>Editeur :</th>
+                        <th>En prêt :</th>
+                        <th>Date d'ajout :</th>
+                        <th></th>
                     </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="14">pas de BD...</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for bd in bds %}
+                        <tr>
+                            <td>{{ bd.id }}</td>
+                            <td>{{ bd.title }}</td>
+                            <td>
+                                {{ bd.category.name }}
+                            </td>
+                            <td>
+                                <ul>{% for author in bd.authors %}
+                                        <li>{{ author.name }}</li>
+                                    {% endfor %}</ul>
+                            </td>
+                            <td>{{ bd.edition }}</td>
+                            <td>{{ bd.onLend ? 'Oui' : 'Non' }}</td>
+                            <td>{{ bd.createdAt ? bd.createdAt|date('d-m-Y') : '' }}</td>
+                            <td>
+                                <div class="row">
+                                    <a class="btn btn-outline-secondary mb-3"
+                                       href="{{ path('bd_show', {'slug': bd.slug}) }}">Voir</a>
+                                    <a class="btn btn-outline-warning text-dark ml-2 mb-3 mr-4"
+                                       href="{{ path('bd_edit', {'slug': bd.slug}) }}">Modifier</a>
+                                    {{ include('bd/_delete_form.html.twig') }}
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="14">pas de BD...</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
             <div class="pagination">
                 {{ knp_pagination_render(bds) }}
             </div>

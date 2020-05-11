@@ -8,7 +8,6 @@
     {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}
     {% endblock %}
-
 </head>
 <body>
 <div class="page">
@@ -19,7 +18,7 @@
             {% endblock %}
         {% endblock %}
     </header>
-    <main class="site-content mt-5">
+    <main class="site-content admin mt-5" id="content_admin">
         {#FLASH MESSAGES#}
         <div class="container mt-5">
             {% for category, messages in app.flashes %}

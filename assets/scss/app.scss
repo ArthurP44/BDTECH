@@ -19,10 +19,10 @@ a {
 //jumbotron bg color :
 
 .jumbotron {
-  background-color: white;
+  background-color: transparent;
 }
 
-// settings for page display, see base.html.twig
+// settings for page display to keep footer at page bottom, see base.html.twig
 .page {
   display: flex;
   flex-direction: column;
@@ -36,19 +36,6 @@ a {
 //font-size for bd-index's table to avoid weird margin
 .table {
   font-size: 0.9em;
-}
-
-//HOMEPAGE :
-
-//settings of carousel on homepage :
-.carousel {
-  height: 500px;
-  width: 380px;
-}
-
-//home jumbotron :
-#jumbo_home {
-  background-color: white;
 }
 
 //LIST CARD DISPLAY :
@@ -66,4 +53,14 @@ a {
 
 #table_author, #table_category, #table_serie{
   width: 60%;
+}
+
+//backgrounds
+#content_anonymous{
+  background-image: url("../../public/build/gaston_bg.jpg");
+  background-size: initial;
+}
+#content_admin{
+  background-image: url("../../public/build/mve3.jpg");
+  background-size: initial;
 }

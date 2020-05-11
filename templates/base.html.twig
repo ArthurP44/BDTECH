@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-            {% block title %}{% endblock %}
-        </title>
-
-    </head>
-    <body>
-        <div class="page">
-            <header class="site-header mb-5">
-                {% block head %}
-                    {% block javascripts %}
-                        {{ encore_entry_script_tags('app') }}
-                    {% endblock %}
-                    {% block navbar %}
-                        {% include '/navbar/navbarHome.html.twig' %}
-                    {% endblock %}
-
-                    {% block stylesheets %}
-                        {{ encore_entry_link_tags('app') }}
-                    {% endblock %}
-                {% endblock %}
-            </header>
-            <main class="site-content mt-5">
-                {% block body %}{% endblock %}
-
-
-            </main>
-            <footer class="site-footer">
-                {% block footer %}
-                    {% include 'footer/footer.html.twig' %}
-                {% endblock %}
-            </footer>
-        </div>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+<body>
+<div class="page">
+    <header class="site-header mb-5">
+        {% block head %}
+            {% block navbar %}
+                {% include '/navbar/navbarHome.html.twig' %}
+            {% endblock %}
+        {% endblock %}
+    </header>
+    <main class="site-content mt-5" id="content_anonymous">
+        {% block body %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+        {% block footer %}
+            {% include 'footer/footer.html.twig' %}
+        {% endblock %}
+    </footer>
+    {% block javascripts %}
+    {% endblock %}
+    {{ encore_entry_script_tags('app') }}
+</div>
+</body>
 </html>
