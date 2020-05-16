@@ -1,9 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light shadow p-3 mb-5 bg-white" id="navbar">
-    <a class="navbar-brand pr-5" href="{{ path('homepage') }}" id="bulle_logo">BDTEch'</a>
     <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link btn btn-outline-dark mr-2 bg-white text-dark" href="{{ path('bd_list') }}" id="liste">Liste</a>
+                <a class="nav-link p-0" href="{{ path('homepage') }}">
+                    <img src="/build/logo_bdtech1.png" alt="bulle_logo" id="bulle_logo">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-outline-dark mr-2 bg-white text-dark" href="{{ path('bd_list') }}"
+                   id="liste">Liste</a>
             </li>
             <li class="nav-item">
                 {{ render(controller('App\\Controller\\CategoryController::listCategories')) }}
@@ -20,15 +25,19 @@
                        id="adminButton">Administration</a>
                 </li>
             {% endif %}
+            {% if app.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">
+                        <img src="/build/deco_black.png" alt="deco" id="deconnexion">
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">
+                        <img src="/build/connexion_black_100x73.png" alt="co" id="connexion">
+                    </a>
+                </li>
+            {% endif %}
         </ul>
-    </div>
-    <div class="d-flex justify-content-end">
-        {% if app.user %}
-            <a class="pr-5 pt-1" href="{{ path('app_logout') }}"
-               id="deconnexion">deconnexion</a>
-        {% else %}
-            <a class="pr-5 pt-1" href="{{ path('app_login') }}"
-               id="connexion">Connexion</a>
-        {% endif %}
     </div>
 </nav>

@@ -9,27 +9,30 @@
 
 //LOGO button BD
 #bulle_logo {
-  margin-top: -50px;
-  padding-bottom: 110px;
-  background-image: url('../../public/build/logo_bdtech.png');
-  background-size: 120px 200px;
-  background-repeat: no-repeat;
-  color: transparent;
   cursor: pointer;
+  margin-top: -30px;
+  margin-bottom: -70px;
+  position: relative;
+  left: -350px;
 }
 
-#bulle_logo:active {
+#bulle_logo_admin{
+  cursor: pointer;
+  margin-top: -30px;
+  margin-bottom: -70px;
+  position: relative;
+  left: -379px;
+}
+
+#bulle_logo:active, #bulle_logo_admin:active {
   transform: translateY(3px);
 }
 
 //login/logout logos :
 #connexion {
-  padding-bottom: 40px;
-  background-image: url('../../public/build/connexion_black_font.png');
-  background-size: 90px 70px;
-  background-repeat: no-repeat;
-  color: transparent;
   cursor: pointer;
+  position : relative;
+  right: -350px;
 
 }
 
@@ -38,21 +41,25 @@
 }
 
 #deconnexion {
-  padding-bottom: 40px;
-  background-image: url('../../public/build/deco_black.png');
-  background-size: 90px 70px;
-  background-repeat: no-repeat;
-  color: transparent;
   cursor: pointer;
+  position: relative;
+  right: -350px;
 }
 
-#deconnexion:active{
+#deconnexion_admin{
+  cursor: pointer;
+  position: relative;
+  right: -379px;
+}
+
+#deconnexion:active, #deconnexion_admin:active{
   transform: translateY(3px);
 }
 
 //liste button :
 #liste{
   box-shadow: 0 6px black;
+  margin-top: 20px;
 }
 
 #liste:hover{
@@ -68,6 +75,7 @@
 //all dropdown buttons
 #dropdownMenuLink{
   box-shadow: 0 6px black;
+  margin-top: 20px;
 }
 
 #dropdownMenuLink:hover{
@@ -89,6 +97,7 @@
 //button ADMIN in HomeNavbar
 #adminButton{
   box-shadow: 0 6px orange;
+  margin-top: 20px;
 }
 
 #adminButton:hover{
@@ -103,6 +112,7 @@
 
 #adminButtonDark{
   box-shadow: 0 6px #34495e;
+  margin-top: 20px;
 }
 
 #adminButtonDark:hover{
