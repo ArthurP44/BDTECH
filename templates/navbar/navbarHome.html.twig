@@ -3,7 +3,7 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link p-0" href="{{ path('homepage') }}">
-                    <img src="{{ asset('/build/logo_bdtech1.png') }}" alt="bulle_logo" id="bulle_logo">
+                    <img src="{{ asset('build/logo_bdtech1.png') }}" alt="bulle_logo" id="bulle_logo">
                 </a>
             </li>
             <li class="nav-item">
@@ -28,13 +28,13 @@
             {% if app.user %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}">
-                        <img src="/build/deco_black.png" alt="deco" id="deconnexion">
+                        <img src="{{ asset('build/deco_black.png') }}" alt="deco" id="deconnexion">
                     </a>
                 </li>
             {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_login') }}">
-                        <img src="/build/connexion_black_100x73.png" alt="co" id="connexion">
+                        <img src="{{ asset('/build/connexion_black_100x73.png') }}" alt="co" id="connexion">
                     </a>
                 </li>
             {% endif %}
