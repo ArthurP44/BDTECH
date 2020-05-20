@@ -37,7 +37,7 @@ class CategoryController extends AbstractController
         $categories = $paginator->paginate(
             $this->repository->findAllWithBd(),
             $request->query->getInt('page', 1),
-            20
+            40
         );
         return $this->render('category/index.html.twig', [
             'categories' => $categories,
@@ -90,7 +90,7 @@ class CategoryController extends AbstractController
         $bds = $paginator->paginate(
             $bdRepository->findBy(['category' => $category], ['created_at' => 'DESC']),
             $request->query->getInt('page', 1),
-            12
+            24
         );
 
         return $this->render('category/show.html.twig', [

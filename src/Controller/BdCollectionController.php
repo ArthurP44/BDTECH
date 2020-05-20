@@ -36,7 +36,7 @@ class BdCollectionController extends AbstractController
         $bdCollections = $paginator->paginate(
             $this->repository->findAllWithBd(),
             $request->query->getInt('page', 1),
-            20
+            40
         );
         return $this->render('bd_collection/index.html.twig', [
             'bd_collections' => $bdCollections,
@@ -91,7 +91,7 @@ class BdCollectionController extends AbstractController
                 ->getRepository(Bd::class)
                 ->findBy(['collection' => $bd_collection], ['created_at' => 'DESC']),
             $request->query->getInt('page', 1),
-            12
+            24
         );
 
         return $this->render('bd_collection/show.html.twig', [

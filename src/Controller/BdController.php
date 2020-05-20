@@ -35,7 +35,7 @@ class BdController extends AbstractController
         $bds = $paginator->paginate(
             $this->repository->findAllWithAuthorAndCategory(),
             $request->query->getInt('page', 1),
-            20
+            50
         );
         return $this->render('bd/index.html.twig', [
             'bds' => $bds,
@@ -134,7 +134,7 @@ class BdController extends AbstractController
         $bds = $paginator->paginate(
             $this->repository->findAllforListQuery(),
             $request->query->getInt('page', 1),
-            12
+            24
             );
         return $this->render('bd/list.html.twig', [
            'bds' => $bds,
@@ -151,7 +151,7 @@ class BdController extends AbstractController
         $bds = $paginator->paginate(
             $this->repository->getLendBd(),
             $request->query->getInt('page', 1),
-            12
+            24
         );
         return $this->render('bd/lend.html.twig', [
             'bds' => $bds,

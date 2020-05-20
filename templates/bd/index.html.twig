@@ -4,20 +4,20 @@
 
 {% block body %}
     <div class="container-fluid mt-5">
-        <div class="jumbotron">
-            <div class="container d-flex justify-content-center">
+        <div class="jumbotron-fluid">
+            <div class="container-fluid">
                 <a class="btn btn-secondary mb-3" href="{{ path('bd_new') }}">Ajouter</a>
-                <table class="table bg-white font-weight-lighter shadow-lg">
+                <table class="table bg-white font-weight-lighter shadow-lg" id="">
                     <thead>
                     <tr>
-                        <th>Id :</th>
-                        <th>Titre :</th>
-                        <th>Genre :</th>
-                        <th>Auteur(s) :</th>
-                        <th>Editeur :</th>
-                        <th>En prêt :</th>
-                        <th>Date d'ajout :</th>
-                        <th></th>
+                        <th style="width: 70px;">Id :</th>
+                        <th style="width: 300px;">Titre :</th>
+                        <th style="width: 210px;">Genre :</th>
+                        <th style="width: 150px;">Auteur(s) :</th>
+                        <th style="width: 130px;">Editeur :</th>
+                        <th style="width: 100px;">En prêt :</th>
+                        <th style="width: 120px;">Date d'ajout :</th>
+                        <th style="width: 230px;"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,9 +29,9 @@
                                 {{ bd.category.name }}
                             </td>
                             <td>
-                                <ul>{% for author in bd.authors %}
-                                        <li>{{ author.name }}</li>
-                                    {% endfor %}</ul>
+                                {% for author in bd.authors %}
+                                        {{ author.name }} <br>
+                                    {% endfor %}
                             </td>
                             <td>{{ bd.edition }}</td>
                             <td>{{ bd.onLend ? 'Oui' : 'Non' }}</td>

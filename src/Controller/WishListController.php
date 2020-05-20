@@ -24,7 +24,7 @@ class WishListController extends AbstractController
         $wishLists = $paginator->paginate(
             $wishListRepository->findAll(),
             $request->query->getInt('page', 1),
-            20
+            50
         );
         return $this->render('wish_list/index.html.twig', [
             'wish_lists' => $wishLists,

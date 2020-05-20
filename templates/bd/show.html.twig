@@ -9,10 +9,10 @@
                 <div class="col-5">
                     <div class="row">
                         <div class="col">
-                            <div class="card mb-3 shadow" style="max-width: 540px; max-height: 600px">
+                            <div class="card mb-3 shadow" style="max-width: 540px; max-height: 600px; background-color: lightgray;">
                                 <div class="row no-gutters d-flex justify-content-center">
                                     <div class="col-md-8">
-                                        <div class="card-body text-center ">
+                                        <div class="card-body text-center">
                                             <h5 class="card-title">{{ bd.title }}</h5>
                                             {% for author in authors %}
                                                 <p class="card-text text-muted">{{ author.name }}</p>
@@ -42,7 +42,7 @@
                     <div class="card mb-3 ml-5 mt-3 shadow" style="max-width: 540px;">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="card-body" style="height: 40.6em; width: 35em;">
+                                <div class="card-body" style="height: 40.6em; width: 35em; background-color: lightgrey;">
                                     <div class="container ml-2  mt-4">
                                         <p class="card-text"><strong>Genre : </strong>{{ bd.category.name }}</p>
                                         {% if bd.collection.name is defined %}
@@ -71,12 +71,12 @@
                                             <p class="card-text"><strong>Année de mon édition : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
                                         {% if bd.value  %}
-                                            <p class="card-text"><strong>Cote : </strong>{{ bd.value }}</p>
+                                            <p class="card-text"><strong>Cote : </strong>{{ bd.value }} €</p>
                                         {% else %}
                                             <p class="card-text"><strong>Cote : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
                                         {% if bd.price  %}
-                                            <p class="card-text"><strong>Prix : </strong>{{ bd.price }}</p>
+                                            <p class="card-text"><strong>Prix : </strong>{{ bd.price }} €</p>
                                         {% else %}
                                             <p class="card-text"><strong>Prix : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
