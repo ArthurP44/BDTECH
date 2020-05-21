@@ -88,7 +88,7 @@ class CategoryController extends AbstractController
         $category = $this->repository->findOneBy(['name' => mb_strtolower($slug)]);
 
         $bds = $paginator->paginate(
-            $bdRepository->findBy(['category' => $category], ['created_at' => 'DESC']),
+            $bdRepository->findBy(['category' => $category], ['collection' => 'ASC']),
             $request->query->getInt('page', 1),
             24
         );
