@@ -90,7 +90,7 @@ class CategoryController extends AbstractController
         $bds = $paginator->paginate(
             $bdRepository->findBy(['category' => $category], ['collection' => 'ASC', 'creation_date' => 'ASC']),
             $request->query->getInt('page', 1),
-            24
+            32
         );
 
         return $this->render('category/show.html.twig', [

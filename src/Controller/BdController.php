@@ -134,7 +134,7 @@ class BdController extends AbstractController
         $bds = $paginator->paginate(
             $this->repository->findAllforListQuery(),
             $request->query->getInt('page', 1),
-            24
+            32
             );
         return $this->render('bd/list.html.twig', [
            'bds' => $bds,

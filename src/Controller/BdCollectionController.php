@@ -91,7 +91,7 @@ class BdCollectionController extends AbstractController
                 ->getRepository(Bd::class)
                 ->findBy(['collection' => $bd_collection], ['creation_date' => 'ASC']),
             $request->query->getInt('page', 1),
-            24
+            32
         );
 
         return $this->render('bd_collection/show.html.twig', [

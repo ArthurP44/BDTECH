@@ -85,7 +85,7 @@ class AuthorController extends AbstractController
         $bds = $paginator->paginate(
             $this->repository->findAllBdByAuthorQuery($author->getName()),
             $request->query->getInt('page', 1),
-            24
+            32
         );
 
         return $this->render('author/show.html.twig', [

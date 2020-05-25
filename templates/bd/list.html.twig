@@ -5,13 +5,13 @@
         <div class="mt-5 pt-0 pb-3">
             <div class="row">
                 {% for bd in bds %}
-                    <div class="col-md-4 d-flex justify-content-center">
+                    <div class="col-md-3 d-flex justify-content-center">
                         <a class="btn" href="{{ path('bd_show', {'slug': bd.slug}) }}">
-                            <div class="card mt-3 shadow" style="max-width: 22em; max-height: 36em" id="card-list">
-                                <div class="card-body mt-3" style="width: 22em; height: 33em;">
+                            <div class="card mt-3 shadow" style="max-width: 15em; max-height: 24em" id="card-list">
+                                <div class="card-body pt-3 pl-3 pr-3 pb-0" style="width: 15em; height: 21em;">
                                     <img src="/uploads/covers/{{ bd.filename }}" alt="bd cover"
-                                         style="height: 26em; width: 18em">
-                                    <h5 class="card-title mt-4">{{ bd.title }}</h5>
+                                         style="height: 17em; width: 13em">
+                                    <h6 class="card-title mt-1">{{ bd.title }}</h6>
                                 </div>
                             </div>
                         </a>
