@@ -82,7 +82,6 @@ class AuthorController extends AbstractController
      */
     public function show(Request $request, Author $author, PaginatorInterface $paginator): Response
     {
-
         $bds = $paginator->paginate(
             $this->repository->findAllBdByAuthorQuery($author->getName()),
             $request->query->getInt('page', 1),

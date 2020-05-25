@@ -50,7 +50,6 @@ class AuthorRepository extends ServiceEntityRepository
             ->select('a.name', 'bd.title', 'bd.slug', 'bd.filename')
             ->where('a.name = :author')
             ->setParameter('author', $author);
-            //->orderBy('bd.collection', 'ASC');
 
         return $query->getQuery();
     }
