@@ -9,7 +9,8 @@
                 <div class="col-5">
                     <div class="row">
                         <div class="col">
-                            <div class="card mb-3 shadow" style="max-width: 540px; max-height: 600px; background-color: lightgray;">
+                            <div class="card mb-3 shadow"
+                                 style="max-width: 540px; max-height: 600px; background-color: lightgray;">
                                 <div class="row no-gutters d-flex justify-content-center">
                                     <div class="col-md-8">
                                         <div class="card-body text-center">
@@ -42,7 +43,8 @@
                     <div class="card mb-3 ml-5 mt-3 shadow" style="max-width: 540px;">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="card-body" style="height: 40.6em; width: 35em; background-color: lightgrey;">
+                                <div class="card-body"
+                                     style="height: 40.6em; width: 35em; background-color: lightgrey;">
                                     <div class="container ml-2  mt-4">
                                         <p class="card-text"><strong>Genre : </strong>{{ bd.category.name }}</p>
                                         {% if bd.collection.name is defined %}
@@ -56,31 +58,34 @@
                                             <p class="card-text"><strong>Édition : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
                                         {% if bd.collectedWorks %}
-                                            <p class="card-text"><strong>Collection : </strong>{{ bd.collectedWorks }}</p>
+                                            <p class="card-text"><strong>Collection : </strong>{{ bd.collectedWorks }}
+                                            </p>
                                         {% else %}
                                             <p class="card-text"><strong>Collection : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
                                         {% if bd.creationDate %}
-                                            <p class="card-text"><strong>Année de publication : </strong>{{  bd.creationDate|date('Y') }}</p>
+                                            <p class="card-text"><strong>Année de publication
+                                                    : </strong>{{ bd.creationDate|date('Y') }}</p>
                                         {% else %}
                                             <p class="card-text"><strong>Année de publication : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
                                         {% if bd.ownedBdDate %}
-                                            <p class="card-text"><strong>Année de mon édition : </strong>{{  bd.ownedBdDate|date('Y') }}</p>
+                                            <p class="card-text"><strong>Année de mon édition
+                                                    : </strong>{{ bd.ownedBdDate|date('Y') }}</p>
                                         {% else %}
                                             <p class="card-text"><strong>Année de mon édition : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
-                                        {% if bd.value  %}
+                                        {% if bd.value %}
                                             <p class="card-text"><strong>Cote : </strong>{{ bd.value }} €</p>
                                         {% else %}
                                             <p class="card-text"><strong>Cote : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
-                                        {% if bd.price  %}
+                                        {% if bd.price %}
                                             <p class="card-text"><strong>Prix : </strong>{{ bd.price }} €</p>
                                         {% else %}
                                             <p class="card-text"><strong>Prix : </strong>{{ 'N/A' }}</p>
                                         {% endif %}
-                                        {% if bd.isbn  %}
+                                        {% if bd.isbn %}
                                             <p class="card-text"><strong>ISBN : </strong>{{ bd.isbn }}</p>
                                         {% else %}
                                             <p class="card-text"><strong>ISBN : </strong>{{ 'N/A' }}</p>
@@ -94,6 +99,17 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="col-md-4">
+                                    <div class="card-body bg-white mt-4 rounded shadow">
+                                        <div class="row d-flex justify-content-center">
+                                            <a class="btn btn-outline-warning mb-4"
+                                               href="{{ path('bd_edit', {'slug': bd.slug}) }}">Modifier</a>
+                                        </div>
+                                        {{ include('bd/_delete_form.html.twig') }}
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
