@@ -81,12 +81,8 @@ class BdType extends AbstractType
             ])
             ->add('value', IntegerType::class, [
                 'label' => 'Cote :',
-                'required' => false
-            ])
-            ->add('price', IntegerType::class, [
-                'label' => 'Prix :',
                 'required' => false,
-                'help' => 'Ne pas rentrer la devise',
+                'help' => 'Ne pas rentrer la devise'
             ])
             ->add('comment', TextareaType::class, [
                 'label' => 'Commentaire :',
