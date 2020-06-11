@@ -89,7 +89,7 @@ class BdCollectionController extends AbstractController
         $bds = $paginator->paginate(
             $this->getDoctrine()
                 ->getRepository(Bd::class)
-                ->findBy(['collection' => $bd_collection], ['creation_date' => 'ASC']),
+                ->findBy(['collection' => $bd_collection], ['number' => 'ASC']),
             $request->query->getInt('page', 1),
             32
         );

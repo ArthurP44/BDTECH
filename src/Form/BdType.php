@@ -59,6 +59,10 @@ class BdType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('title', TextType::class, ['label' => 'Titre :'])
+            ->add('number', IntegerType::class, [
+                'label' => 'Numéro :',
+                'required' => false,
+            ])
             ->add('edition', TextType::class, [
                 'label' => 'Édition :',
                 'required' => false

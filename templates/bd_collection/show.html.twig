@@ -13,7 +13,7 @@
                                 <div class="card-body pt-3 pl-3 pr-3 pb-0" style="width: 15em; height: 21em;">
                                     <img src="/uploads/covers/{{ bd.filename }}" alt="bd cover"
                                          style="height: 17em; width: 13em">
-                                    <h6 class="card-title mt-1">{{ bd.title }}</h6>
+                                    <h6 class="card-title mt-1">{{ bd.number ? bd.number ~'. '~ bd.title : bd.title }}</h6>
                                 </div>
                             </div>
                         </a>

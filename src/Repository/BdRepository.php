@@ -65,7 +65,7 @@ class BdRepository extends ServiceEntityRepository
     public function findAllforListQuery(): Query
     {
         $query = $this->createQueryBuilder('bd')
-            ->select('bd.title', 'bd.slug', 'bd.filename')
+            ->select('bd.title', 'bd.slug', 'bd.filename', 'bd.number')
             ->orderBy('bd.created_at', 'DESC');
         return $query->getQuery();
     }
