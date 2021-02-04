@@ -74,12 +74,12 @@ class BdType extends AbstractType
             ->add('creation_date', DateType::class, [
                 'label' => 'Année de publication originale :',
                 'format' => 'dMy',
-                'years' => range(2020, 1900, 1),
+                'years' => range(date("Y"), 1900, 1),
                 'required' => false,
             ])
             ->add('owned_bd_date', DateType::class, [
                 'label' => 'Année de mon exemplaire :',
-                'years' => range(2020, 1900, 1),
+                'years' => range(date("Y"), 1900, 1),
                 'format' => 'dMy',
                 'required' => false,
             ])
